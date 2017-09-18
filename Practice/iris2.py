@@ -13,6 +13,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import load_iris 
 from sklearn.feature_selection import RFE
 from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.svm import SVC
 import random
 
 def makespace(lines=10):
@@ -239,8 +240,15 @@ etc = ExtraTreesClassifier(random_state=777)
 results = cross_val_score(etc, extended_features_df, target.values.ravel(), cv=kfold, scoring=scoring)
 print("ExtraTreesClassifier neg_log_loss; mean, std: %.3f (%.3f)") % (results.mean(), results.std())
 
+svc_model = SVC(probability=True, random_state=777)
+results = cross_val_score(svc_model, extended_features_df, target.values.ravel(), cv=kfold, scoring=scoring)
+print("SVC neg_log_loss; mean, std: %.3f (%.3f)") % (results.mean(), results.std())
+
 ### 4. Improving results using algorithm parameter tuning.
 ## time for grid search!
+#
+# a lot of the code below is commented out because it is slower and doesn't need to run every time
+#
 # for logistic regression, no hyperparameters, but C, specifying regularization, can be tuned
 # https://stackoverflow.com/questions/21816346/fine-tuning-parameters-in-logistic-regression
 # not sure how to incorporate that here, because we are using RFE
@@ -248,46 +256,99 @@ print("ExtraTreesClassifier neg_log_loss; mean, std: %.3f (%.3f)") % (results.me
 # tune n_features_to_select in RFE
 #
 # find optimal C round 1
-model = LogisticRegression()
-param_grid = {'C': [.001, .01, .1, 1, 10, 100, 1000, 10000] }
-grid_c_logistic_regression = GridSearchCV(model, param_grid, cv = kfold)
-grid_c_log_reg_result = grid_c_logistic_regression.fit(extended_features_df, target.values.ravel())
-makespace(5)
-print grid_c_log_reg_result.best_score_ # 0.975
-print grid_c_log_reg_result.best_params_ # ('C': 1000)
+#model = LogisticRegression()
+#param_grid = {'C': [.001, .01, .1, 1, 10, 100, 1000, 10000] }
+#grid_c_logistic_regression = GridSearchCV(model, param_grid, cv = kfold)
+#grid_c_log_reg_result = grid_c_logistic_regression.fit(extended_features_df, target.values.ravel())
+#makespace(5)
+#print grid_c_log_reg_result.best_score_ # 0.975
+#print grid_c_log_reg_result.best_params_ # ('C': 1000)
 # find optimal C round 2
-model = LogisticRegression()
-param_grid = {'C': range(100,1111) }
-grid_c_logistic_regression = GridSearchCV(model, param_grid, cv = kfold)
-grid_c_log_reg_result = grid_c_logistic_regression.fit(extended_features_df, target.values.ravel())
-makespace(5)
-print grid_c_log_reg_result.best_score_ # 0.975
-print grid_c_log_reg_result.best_params_ # ('C': 133)
+#model = LogisticRegression()
+#param_grid = {'C': range(100,1111) }
+#grid_c_logistic_regression = GridSearchCV(model, param_grid, cv = kfold)
+#grid_c_log_reg_result = grid_c_logistic_regression.fit(extended_features_df, target.values.ravel())
+#makespace(5)
+#print grid_c_log_reg_result.best_score_ # 0.975
+#print grid_c_log_reg_result.best_params_ # ('C': 133)
 #
-model = LogisticRegression(C=133)
-rfe = RFE(model)
-param_grid = {'n_features_to_select': range(1,13) }
-grid_c_logistic_regression = GridSearchCV(rfe, param_grid, cv = kfold)
-grid_c_log_reg_result = grid_c_logistic_regression.fit(extended_features_df, target.values.ravel())
-makespace(5)
-print grid_c_log_reg_result.best_score_ # 0.975
-print grid_c_log_reg_result.best_params_ # ('n_features_to_select': 5)
+#model = LogisticRegression(C=133)
+#rfe = RFE(model)
+#param_grid = {'n_features_to_select': range(1,13) }
+#grid_c_logistic_regression = GridSearchCV(rfe, param_grid, cv = kfold)
+#grid_c_log_reg_result = grid_c_logistic_regression.fit(extended_features_df, target.values.ravel())
+#makespace(5)
+#print grid_c_log_reg_result.best_score_ # 0.975
+#print grid_c_log_reg_result.best_params_ # ('n_features_to_select': 5)
 # which features are being selected here? I'm not sure, if they're even the same each fold
 # 
 # for ExtraTreesClassifier we will gridSearch over multiple parameters
 #
 # can find params to mess with here : 
 # http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html#sklearn.ensemble.ExtraTreesClassifier
-etc = ExtraTreesClassifier(random_state=777)
-param_grid = {'n_estimators': range(5,26),
-			  'max_features': range(1,13),
-			  'min_samples_split': range(2,6)}
-grid_etc = GridSearchCV(etc, param_grid, cv = kfold)
-grid_etc_result = grid_etc.fit(extended_features_df, target.values.ravel())
+#etc = ExtraTreesClassifier(random_state=777)
+#param_grid = {'n_estimators': range(5,26),
+#			  'max_features': range(1,13),
+#			  'min_samples_split': range(2,6)}
+#grid_etc = GridSearchCV(etc, param_grid, cv = kfold)
+#grid_etc_result = grid_etc.fit(extended_features_df, target.values.ravel())
+#makespace(5)
+#print grid_etc_result.best_score_  # ~0.96667
+#print grid_etc_result.best_params_ # {'max_features': 3, 'min_samples_split': 5, 'n_estimators': 7}
+# 
+#makespace(5)
+#svc_model = SVC(probability=True, random_state=777)
+#param_grid = {'C':[.001, .01, .1, .5, .6, .7, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 10, 100, 1000],
+#	          'gamma':[2,1.8,1.6,1.4,1.2,1,.8,.6,.4,.3,.2, .142857, .1, .090909, .0833333, .076923, .071429, .058824, .056232],
+#			  'shrinking':[True, False]}
+#grid_svc = GridSearchCV(svc_model, param_grid, cv = kfold)
+#grid_svc_result = grid_svc.fit(extended_features_df, target.values.ravel())
+#print grid_svc_result.best_score_  # ~0.958333333333333333
+#print grid_svc_result.best_params_ # {'C': 1, 'shrinking': True, 'gamma': 0.2}
+# 
+# see how our newly tuned parameters perform...
 makespace(5)
-print grid_etc_result.best_score_ # ~0.96667
-print grid_etc_result.best_params_ # {'max_features': 3, 'min_samples_split': 5, 'n_estimators': 7}
 
+model = LogisticRegression(C=133)
+rfe = RFE(model, n_features_to_select=5)
+results = cross_val_score(rfe, extended_features_df, target.values.ravel(), cv=kfold, scoring=scoring)
+print("Grid-tuned LogisticRegression neg_log_loss; mean, std: %.3f (%.3f)") % (results.mean(), results.std())
+rfe_score = results.mean()
+# logistic regressing got a lot better!
+etc = ExtraTreesClassifier(random_state=777, max_features=3, n_estimators=7)
+results = cross_val_score(etc, extended_features_df, target.values.ravel(), cv=kfold, scoring=scoring)
+print("Grid-tuned ExtraTreesClassifier neg_log_loss; mean, std: %.3f (%.3f)") % (results.mean(), results.std())
+etc_score = results.mean()
+# etc originally got worse... that seems bad and wrong...
+# took out min split specification and it improved
+svc_model = SVC(probability=True, random_state=777, C=0.7, shrinking=True, gamma=0.2)
+results = cross_val_score(svc_model, extended_features_df, target.values.ravel(), cv=kfold, scoring=scoring)
+print("Grid-tuned SVC neg_log_loss; mean, std: %.3f (%.3f)") % (results.mean(), results.std())
+svc_score = results.mean()
+#
+# logreg :    (-0.206, (0.060)) -> (-0.080, (0.046)) ' great improvement! both mean and sd
+# etc    :    (-0.099, (0.050)) -> (-0.098, (0.050)) ' marginal/questionable improvement. sd same
+# svc_model : (-0.141, (0.054)) -> (-0.148, (0.063)) ' got slightly worse. not sure why. 
+# 
+### 5. Improving results using ensemble methods.
+# want to implement a voting system, that always has a clear winner.
+# look at absolute inverse weights of results.mean()
+# this weighting approach will give preference to the strongest model in a 3-way split
+# but allow two lower-ranked models to outvote the top model when in agreement
+makespace(5)
+print "Absolute Inverse Weights for models..."
+print("RFE %.3f") % (-1 * (1 / rfe_score)) # 12.520
+print("ETC %.3f") % (-1 * (1 / etc_score)) # 10.223
+print("SVC %.3f") % (-1 * (1 / svc_score)) # 6.772
+# these weights are sufficient to guarantee the desired voting outcome outlined above, assign them
+rfe_weight = (-1 * (1 / rfe_score))
+etc_weight = (-1 * (1 / etc_score))
+svc_weight = (-1 * (1 / svc_score))
+# I think I actually won't use these weights because information leaking, but I'll keep the code
+# to preserve the pattern
+#
+# how are we to test if the voting method is effective? split the train data
+# and test the individual models, and the vote model, and display the results 
 
 
 
