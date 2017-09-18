@@ -8,6 +8,7 @@ from scipy.stats.stats import pearsonr
 from scipy.stats import describe
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import GridSearchCV
 from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import load_iris 
 from sklearn.feature_selection import RFE
@@ -239,11 +240,23 @@ results = cross_val_score(etc, extended_features_df, target.values.ravel(), cv=k
 print("ExtraTreesClassifier neg_log_loss; mean, std: %.3f (%.3f)") % (results.mean(), results.std())
 
 ### 4. Improving results using algorithm parameter tuning.
-# time for grid search!
+## time for grid search!
+# for logistic regression, no hyperparameters, but C, specifying regularization, can be tuned
+# https://stackoverflow.com/questions/21816346/fine-tuning-parameters-in-logistic-regression
+# not sure how to incorporate that here, because we are using RFE, previous run showed C=100 best
+# 
+# tune n_features_to_select in RFE
+model = LogisticRegression(C=100)
+rfe = RFE(model,5)
+param_grid = {'n_features_to_select': range(1,13) }
+grid_c_logistic_regression = GridSearchCV(rfe, param_grid, cv = kfold)
+grid_c_log_reg_result = grid_c_logistic_regression.fit(extended_features_df, target.values.ravel())
+makespace(5)
+print grid_c_log_reg_result.best_score_ # 0.975
+print grid_c_log_reg_result.best_params_ # ('n_features_to_select': 6)
+# which features are being selected here? I'm not sure, if they're even the same each fold
 
-
-
-
+# for ExtraTreesClassifier
 
 
 
