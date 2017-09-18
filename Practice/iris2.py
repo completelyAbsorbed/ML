@@ -243,21 +243,50 @@ print("ExtraTreesClassifier neg_log_loss; mean, std: %.3f (%.3f)") % (results.me
 ## time for grid search!
 # for logistic regression, no hyperparameters, but C, specifying regularization, can be tuned
 # https://stackoverflow.com/questions/21816346/fine-tuning-parameters-in-logistic-regression
-# not sure how to incorporate that here, because we are using RFE, previous run showed C=100 best
+# not sure how to incorporate that here, because we are using RFE
 # 
 # tune n_features_to_select in RFE
-model = LogisticRegression(C=100)
-rfe = RFE(model,5)
+#
+# find optimal C round 1
+model = LogisticRegression()
+param_grid = {'C': [.001, .01, .1, 1, 10, 100, 1000, 10000] }
+grid_c_logistic_regression = GridSearchCV(model, param_grid, cv = kfold)
+grid_c_log_reg_result = grid_c_logistic_regression.fit(extended_features_df, target.values.ravel())
+makespace(5)
+print grid_c_log_reg_result.best_score_ # 0.975
+print grid_c_log_reg_result.best_params_ # ('C': 1000)
+# find optimal C round 2
+model = LogisticRegression()
+param_grid = {'C': range(100,1111) }
+grid_c_logistic_regression = GridSearchCV(model, param_grid, cv = kfold)
+grid_c_log_reg_result = grid_c_logistic_regression.fit(extended_features_df, target.values.ravel())
+makespace(5)
+print grid_c_log_reg_result.best_score_ # 0.975
+print grid_c_log_reg_result.best_params_ # ('C': 133)
+#
+model = LogisticRegression(C=133)
+rfe = RFE(model)
 param_grid = {'n_features_to_select': range(1,13) }
 grid_c_logistic_regression = GridSearchCV(rfe, param_grid, cv = kfold)
 grid_c_log_reg_result = grid_c_logistic_regression.fit(extended_features_df, target.values.ravel())
 makespace(5)
 print grid_c_log_reg_result.best_score_ # 0.975
-print grid_c_log_reg_result.best_params_ # ('n_features_to_select': 6)
+print grid_c_log_reg_result.best_params_ # ('n_features_to_select': 5)
 # which features are being selected here? I'm not sure, if they're even the same each fold
-
-# for ExtraTreesClassifier
-
+# 
+# for ExtraTreesClassifier we will gridSearch over multiple parameters
+#
+# can find params to mess with here : 
+# http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.ExtraTreesClassifier.html#sklearn.ensemble.ExtraTreesClassifier
+etc = ExtraTreesClassifier(random_state=777)
+param_grid = {'n_estimators': range(5,26),
+			  'max_features': range(1,13),
+			  'min_samples_split': range(2,6)}
+grid_etc = GridSearchCV(etc, param_grid, cv = kfold)
+grid_etc_result = grid_etc.fit(extended_features_df, target.values.ravel())
+makespace(5)
+print grid_etc_result.best_score_ # ~0.96667
+print grid_etc_result.best_params_ # {'max_features': 3, 'min_samples_split': 5, 'n_estimators': 7}
 
 
 
