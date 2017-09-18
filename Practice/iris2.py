@@ -6,6 +6,7 @@ from pandas.plotting import scatter_matrix
 from scipy.stats.stats import spearmanr
 from scipy.stats.stats import pearsonr
 from scipy.stats import describe
+from sklearn.metrics import accuracy_score
 from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import GridSearchCV
@@ -13,6 +14,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import load_iris 
 from sklearn.feature_selection import RFE
 from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.ensemble import VotingClassifier
 from sklearn.svm import SVC
 import random
 
@@ -344,15 +346,89 @@ print("SVC %.3f") % (-1 * (1 / svc_score)) # 6.772
 rfe_weight = (-1 * (1 / rfe_score))
 etc_weight = (-1 * (1 / etc_score))
 svc_weight = (-1 * (1 / svc_score))
-# I think I actually won't use these weights because information leaking, but I'll keep the code
-# to preserve the pattern
+# I'll use these weights for now but should probably de-bias them some more...
+# it actually might be better this way? investigate further
 #
 # how are we to test if the voting method is effective? split the train data
 # and test the individual models, and the vote model, and display the results 
+# 
+# code borrowed from top of script
+makespace(5)
+rowLength = 120
+split_point = int(0.80 * rowLength)
+rowListShuffled = range(0, rowLength)
+random.shuffle(rowListShuffled)
 
+# segment the testing and training portions
+X_train_train = extended_features_df.iloc[rowListShuffled[:split_point],:]
+y_train_train = target.values.ravel()[rowListShuffled[:split_point]]
+X_train_test = extended_features_df.iloc[rowListShuffled[split_point:],:]
+y_train_test = target.values.ravel()[rowListShuffled[split_point:]]
 
+model = LogisticRegression(C=133)
+rfe_model = RFE(model, n_features_to_select=5)
+rfe_model.fit(X_train_train, y_train_train)
+rfe_predictions = rfe_model.predict(X_train_test) # compare to y_train_test
+rfe_accuracy = accuracy_score(rfe_predictions, y_train_test)
+print rfe_accuracy # 1.0
 
+etc_model = ExtraTreesClassifier(random_state=777, max_features=3, n_estimators=7)
+etc_model.fit(X_train_train, y_train_train)
+etc_predictions = etc_model.predict(X_train_test) # compare to y_train_test
+etc_accuracy = accuracy_score(etc_predictions, y_train_test)
+print etc_accuracy # 1.0
 
+svc_model = SVC(probability=True, random_state=777, C=0.7, shrinking=True, gamma=0.2)
+svc_model.fit(X_train_train, y_train_train)
+svc_predictions = svc_model.predict(X_train_test) # compare to y_train_test
+svc_accuracy = accuracy_score(svc_predictions, y_train_test)
+print svc_accuracy # 1.0
+
+# each of these had 100% accuracy, I think we'll just have to do this test on the true test data...
+makespace(5)
+model = LogisticRegression(C=133)
+rfe_model = RFE(model, n_features_to_select=5)
+rfe_model.fit(X_train, y_train.values.ravel())
+rfe_predictions = rfe_model.predict(X_test) # compare to y_test
+rfe_accuracy = accuracy_score(rfe_predictions, y_test)
+print rfe_accuracy # 1.0
+
+etc_model = ExtraTreesClassifier(random_state=777, max_features=3, n_estimators=7)
+etc_model.fit(X_train, y_train.values.ravel())
+etc_predictions = etc_model.predict(X_test) # compare to y_test
+etc_accuracy = accuracy_score(etc_predictions, y_test)
+print etc_accuracy # 1.0
+
+svc_model = SVC(probability=True, random_state=777, C=0.7, shrinking=True, gamma=0.2)
+svc_model.fit(X_train, y_train.values.ravel())
+svc_predictions = svc_model.predict(X_test) # compare to y_test
+svc_accuracy = accuracy_score(svc_predictions, y_test)
+print svc_accuracy # 0.96667
+
+# we will implement three methods of voting classifier, ecl1-ecl3
+
+### 6. Finalize the model ready for future use.
+makespace(5)
+ecl1 = VotingClassifier(estimators=[
+	   ('rfe', rfe_model), ('etc', etc_model), ('svc', svc_model)], voting='hard')
+ecl2 = VotingClassifier(estimators=[
+	   ('rfe', rfe_model), ('etc', etc_model), ('svc', svc_model)], voting='soft')
+ecl3 = VotingClassifier(estimators=[
+	   ('rfe', rfe_model), ('etc', etc_model), ('svc', svc_model)], voting='soft',
+	   weights = [12.520, 10.223, 6.772])	   
+ecl1 = ecl1.fit(X_train, y_train.values.ravel())
+ecl2 = ecl2.fit(X_train, y_train.values.ravel())
+ecl3 = ecl3.fit(X_train, y_train.values.ravel())
+ecl1_predictions = ecl1.predict(X_test)
+ecl2_predictions = ecl2.predict(X_test)
+ecl3_predictions = ecl3.predict(X_test)	   
+print("ecl1, hard voting score     : %.3f") % accuracy_score(ecl1_predictions, y_test) # 1.0
+print("ecl2, soft voting score     : %.3f") % accuracy_score(ecl2_predictions, y_test) # 1.0	   
+print("ecl3, weighted voting score : %.3f") % accuracy_score(ecl3_predictions, y_test) # 1.0	   
+
+# each ensemble voting method gets 100% accuracy.
+# I will have to practice these final steps (5,6, more?) on harder problem sets
+	   
 # leave plot show call at end, it's less annoying to me this way xD
 # also leave it off when I don't need it.
 # plt.show()
