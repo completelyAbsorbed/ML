@@ -45,16 +45,32 @@ print dataset.describe()
 #dataset.plot()
 #pyplot.show()
 ## look at seasonal line plots
+#groups = dataset['1964':'1970'].groupby(TimeGrouper('A'))
+#years = DataFrame()
+#pyplot.figure()
+#i = 1
+#n_groups = len(groups)
+#for name, group in groups:
+#	pyplot.subplot((n_groups*100) + 10 + i)
+#	i += 1
+#	pyplot.plot(group)
+#pyplot.show()
+## Density Plot
+#pyplot.figure(1)
+#pyplot.subplot(211)
+#series.hist()
+#pyplot.subplot(212)
+#dataset.plot(kind='kde')
+#pyplot.show()
+## Box and Whisker Plots
 groups = dataset['1964':'1970'].groupby(TimeGrouper('A'))
 years = DataFrame()
-pyplot.figure()
-i = 1
-n_groups = len(groups)
 for name, group in groups:
-	pyplot.subplot((n_groups*100) + 10 + i)
-	i += 1
-	pyplot.plot(group)
+	print name
+	#print group
+	years[name.year] = group.values
+years.boxplot()
 pyplot.show()
 
 
-# log what step I'm on here : 5.4
+# log what step I'm on here : 6
