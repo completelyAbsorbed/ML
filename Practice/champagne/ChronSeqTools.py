@@ -15,7 +15,86 @@ import numpy
 import warnings
 
 
+# validate model
+def validate_model(training_filename, validation_filename):
+	# load and prepare datasets
+	dataset = Series.from_csv(training_filename)
+	X = dataset.values.astype('float32')
+	history = [x for x in X]
+	months_in_year = 12
+	validation = Series.from_csv(validation_filename)
+	y = validation.values.astype('float32')
+	# load model
+	model_fit = ARIMAResults.load('model.pkl')
+	bias = numpy.load('model_bias.npy')
+	# make first prediction
+	predictions = list()
+	yhat = float(model_fit.forecast()[0])
+	yhat = bias + inverse_difference(history, yhat, months_in_year)
+	predictions.append(yhat)
+	history.append(y[0])
+	print('>Predicted=%.3f, Expected=%3.f' % (yhat, y[0]))
+	# rolling forecasts
+	for i in range(1, len(y)):
+		# difference data
+		months_in_year = 12
+		diff = difference_pd(history, months_in_year)
+		# predict
+		model = ARIMA(diff, order=(0,0,1))
+		model_fit = model.fit(trend='nc', disp=0)
+		yhat = model_fit.forecast()[0]
+		yhat = bias + inverse_difference(history, yhat, months_in_year)
+		predictions.append(yhat)
+		# observation
+		obs = y[i]
+		history.append(obs)
+		print('>Predicted=%.3f, Expected=%3.f' % (yhat, obs))
+	# report performance
+	mse = mean_squared_error(y, predictions)
+	rmse = sqrt(mse)
+	print('RMSE: %.3f' % rmse)
+	pyplot.plot(y)
+	pyplot.plot(predictions, color='red')
+	pyplot.show()
 
+
+# make a single prediction from the entire (non-validation) data set
+def make_prediction(filename):
+	series = Series.from_csv(filename)
+	months_in_year = 12
+	model_fit = ARIMAResults.load('model.pkl')
+	bias = numpy.load('model_bias.npy')
+	yhat = float(model_fit.forecast()[0])
+	yhat = bias + inverse_difference(series.values, yhat, months_in_year)
+	print('Predicted: %.3f' % yhat)
+
+# monkey patch around bug in ARIMA class
+def __getnewargs__(self):
+	return ((self.endog),(self.k_lags, self.k_diff, self.k_ma))
+
+# save validation model
+def save_validation_model(order, filename, bias):
+	ARIMA.__getnewargs__ = __getnewargs__
+	# load data
+	series = Series.from_csv(filename)
+	# prepare data
+	X = series.values
+	X = X.astype('float32')
+	# difference data
+	months_in_year = 12
+	diff = difference_pd(X, months_in_year)
+	# fit model
+	model = ARIMA(diff, order=order)
+	model_fit = model.fit(trend='nc', disp=0)
+	# bias constant, could be calculated from in-sample mean residual
+	bias = bias
+	# save model
+	model_fit.save('model.pkl')
+	numpy.save('model_bias.npy', [bias])
+
+# run ARIMA and review residual error with bias correction, a wrapper function
+def examine_residual_error_bias_correction(p , d, q, dataset, train_size_factor, trend, months_in_year, print_flag, bias):
+	return run_arima(p=p, d=d, q=q, dataset=dataset, train_size_factor=train_size_factor, trend=trend, months_in_year=months_in_year, print_flag=print_flag, return_residual=True, bias = bias)
 
 # run ARIMA and review residual error. a wrapper function
 def examine_residual_error(p, d , q , dataset, train_size_factor, trend , months_in_year = 12, print_flag = True):
@@ -41,7 +120,7 @@ def run_grid_search_arima(p_grid, d_grid, q_grid, dataset, train_size_factor, tr
 	return best_score, best_cfg
 
 # do walk-forward ARIMA, return rmse 
-def run_arima(p, d, q, dataset, train_size_factor = 0.5, trend = 'nc', months_in_year = 12, print_flag = True, return_residual = False):
+def run_arima(p, d, q, dataset, train_size_factor = 0.5, trend = 'nc', months_in_year = 12, print_flag = True, return_residual = False, bias = 0):
 	# load data
 	series = dataset
 	# prepare data
@@ -60,7 +139,7 @@ def run_arima(p, d, q, dataset, train_size_factor = 0.5, trend = 'nc', months_in
 		model = ARIMA(diff, order=(p,d,q))
 		model_fit = model.fit(trend=trend, disp=0)
 		yhat = model_fit.forecast()[0]
-		yhat = inverse_difference_pd(history, yhat, months_in_year)
+		yhat = bias + inverse_difference_pd(history, yhat, months_in_year)
 		predictions.append(yhat)
 		# observation
 		obs = test[i]

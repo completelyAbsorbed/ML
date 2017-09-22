@@ -14,6 +14,7 @@ initial_exploratory_flag = True
 initial_ARIMA_flag = True
 grid_ARIMA_flag = True
 review_residual_flag = True
+validation_flag = True
 # end of flag declarations
 ################################################################################################
 # declare filepaths, names, and other variables up front so minimal editing of process required
@@ -38,6 +39,7 @@ q_grid = range(0,7)
 p_2 = 0
 d_2 = 0
 q_2 = 1
+bias = 165.90473
 # end of non-flag declarations
 ################################################################################################
 
@@ -114,13 +116,26 @@ if grid_ARIMA_flag:
 #### review residual errors an ARIMA(p_2, d_2, q_2)
 if review_residual_flag:
 	residuals = cst.examine_residual_error(p = p_2, d = d_2, q = q_2, dataset = dataset, train_size_factor = train_size_factor, trend = trend, months_in_year = months_in_year, print_flag = True)
-
-
-		
+	makespace()
+	# mean of residuals : 165.90473, try a bias correction
+	residuals_bias_correction = cst.examine_residual_error_bias_correction(p = p_2, d = d_2, q = q_2, dataset = dataset, train_size_factor = train_size_factor, trend = trend, months_in_year = months_in_year, print_flag = True, bias = bias)
+	residuals_bias_correction_flip = cst.examine_residual_error_bias_correction(p = p_2, d = d_2, q = q_2, dataset = dataset, train_size_factor = train_size_factor, trend = trend, months_in_year = months_in_year, print_flag = True, bias = -bias)
+	# look at autocorrelation plots for residuals
+	cst.autocorrelation_plots(dataset = residuals)
+	cst.autocorrelation_plots(dataset = residuals_bias_correction)	
+##### Finalize Model, Make Prediction, Validate Model 
+if validation_flag:
+	# save validation model
+	cst.save_validation_model(order = (p_2, d_2, q_2), filename = training_filename, bias = bias)
+	makespace()
+	# make prediction for first row of validation data
+	cst.make_prediction(filename = training_filename) # predicted : 6794.773, actual : 6981, close!
+	makespace()
+	# validate model
+	cst.validate_model(training_filename = training_filename, validation_filename = validation_filename) # RMSE = 361.110, very good!
+			
 ################################################################################################
 # editing notes
-# 
-# why are we doing train test split in initial exploratory analysis? should probably move this
 # 
 # end editing notes 
 ################################################################################################
