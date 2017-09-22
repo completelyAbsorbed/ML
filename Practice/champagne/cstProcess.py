@@ -13,6 +13,7 @@ from ChronSeqTools import makespace
 initial_exploratory_flag = True
 initial_ARIMA_flag = True
 grid_ARIMA_flag = True
+review_residual_flag = True
 # end of flag declarations
 ################################################################################################
 # declare filepaths, names, and other variables up front so minimal editing of process required
@@ -34,6 +35,9 @@ q_1 = 1
 p_grid = range(0,7)
 d_grid = range(0,3)
 q_grid = range(0,7)
+p_2 = 0
+d_2 = 0
+q_2 = 1
 # end of non-flag declarations
 ################################################################################################
 
@@ -102,13 +106,14 @@ if initial_ARIMA_flag:
 ##### grid search ARIMA 		
 if grid_ARIMA_flag:
 	# search for and print best configuration and score among p,d,q grid specifications
-	arima_params_best, rmse_arima_best = cst.run_grid_search_arima(p_grid = p_grid, d_grid = d_grid, q_grid = q_grid, dataset = dataset, train_size_factor = train_size_factor, trend = trend, full_print_flag = False)
+	arima_params_best, rmse_arima_best = cst.run_grid_search_arima(p_grid = p_grid, d_grid = d_grid, q_grid = q_grid, dataset = dataset, train_size_factor = train_size_factor, trend = trend, months_in_year = months_in_year, full_print_flag = False)
 ### notes on grid search ARIMA
 #
 # best (p,d,q) = (0,0,1), best RMSE = 939.464, may or may not be a statistically significant improvement
 #
-#### review residual errors
-
+#### review residual errors an ARIMA(p_2, d_2, q_2)
+if review_residual_flag:
+	residuals = cst.examine_residual_error(p = p_2, d = d_2, q = q_2, dataset = dataset, train_size_factor = train_size_factor, trend = trend, months_in_year = months_in_year, print_flag = True)
 
 
 		

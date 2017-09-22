@@ -14,8 +14,16 @@ from statsmodels.tsa.arima_model import ARIMAResults
 import numpy
 import warnings
 
+
+
+
+# run ARIMA and review residual error. a wrapper function
+def examine_residual_error(p, d , q , dataset, train_size_factor, trend , months_in_year = 12, print_flag = True):
+	return run_arima(p=p, d=d, q=q, dataset=dataset, train_size_factor=train_size_factor, trend=trend, months_in_year=months_in_year, print_flag=print_flag, return_residual=True)
+
+
 # preform grid search on ARIMA, return best configuration, best score
-def run_grid_search_arima(p_grid, d_grid, q_grid, dataset, train_size_factor, trend, full_print_flag = False):
+def run_grid_search_arima(p_grid, d_grid, q_grid, dataset, train_size_factor, trend, months_in_year = 12, full_print_flag = False):
 	dataset = dataset.astype('float32')
 	best_score, best_cfg = float("inf"), None
 	for p in p_grid:
@@ -23,7 +31,7 @@ def run_grid_search_arima(p_grid, d_grid, q_grid, dataset, train_size_factor, tr
 			for q in q_grid:
 				order = (p,d,q)
 				try:
-					rmse = run_arima(p, d, q, dataset, train_size_factor, trend, print_flag = full_print_flag)
+					rmse = run_arima(p=p, d=d, q=q, dataset=dataset, train_size_factor=train_size_factor, trend=trend, months_in_year=months_in_year, print_flag = full_print_flag, return_residual = False)
 					if rmse < best_score:
 						best_score, best_cfg = rmse, order
 					print('ARIMA%s RMSE=%.3f' % (order,mse))
@@ -33,7 +41,7 @@ def run_grid_search_arima(p_grid, d_grid, q_grid, dataset, train_size_factor, tr
 	return best_score, best_cfg
 
 # do walk-forward ARIMA, return rmse 
-def run_arima(p, d, q, dataset, train_size_factor = 0.5, trend = 'nc', print_flag = True):
+def run_arima(p, d, q, dataset, train_size_factor = 0.5, trend = 'nc', months_in_year = 12, print_flag = True, return_residual = False):
 	# load data
 	series = dataset
 	# prepare data
@@ -46,7 +54,7 @@ def run_arima(p, d, q, dataset, train_size_factor = 0.5, trend = 'nc', print_fla
 	predictions = list()
 	for i in range(len(test)):
 		# difference data
-		months_in_year = 12
+		#months_in_year = months_in_year
 		diff = difference_pd(history, months_in_year)
 		# predict
 		model = ARIMA(diff, order=(p,d,q))
@@ -61,7 +69,21 @@ def run_arima(p, d, q, dataset, train_size_factor = 0.5, trend = 'nc', print_fla
 			print('>Predicted=%.3f, Expected=%3.f' % (yhat, obs))
 	# report performance
 	rmse_arima = RMSE(test, predictions, print_flag)
-	return rmse_arima
+	if return_residual:
+		residuals = [test[i]-predictions[i] for i in range(len(test))]
+		residuals = DataFrame(residuals)
+		if print_flag:
+			print(residuals.describe())
+		# plot
+		pyplot.figure()
+		pyplot.subplot(211)
+		residuals.hist(ax=pyplot.gca())
+		pyplot.subplot(212)
+		residuals.plot(kind='kde', ax=pyplot.gca())
+		pyplot.show()
+		return residuals
+	else:
+		return rmse_arima
 	
 # create a differenced ndarray
 def difference_pd(dataset, interval=1):
