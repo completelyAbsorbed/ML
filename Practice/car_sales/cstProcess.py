@@ -11,6 +11,7 @@ from ChronSeqTools import makespace
 # define a series of flags so the program knows which steps we want to run
 # this helps readability, save on compute cycles, and more
 hot_open_flag = True
+transform_data_flag = True
 initial_exploratory_flag = False
 initial_ARIMA_flag = False
 grid_ARIMA_flag = False
@@ -40,13 +41,32 @@ q_grid = [0,1,2,3,12,15,17]
 p_2 = 1
 d_2 = 0
 q_2 = 1
-bias = 165.90473
+bias = 174.022116
 # end of non-flag declarations
+################################################################################################
+# transformation functions, make sure these reverse each other 
+# 
+# these will be set up to transform one-column data, specific to the monthly_car_sales problem
+
+power = 2
+inverse_power = 1 / power
+
+def data_transform(dataset):
+	return dataset ** power
+
+def data_untransform(dataset):
+	return dataset ** inverse_power
+
+
+
 ################################################################################################
 
 ##### hot open data load script
 if hot_open_flag:
-	dataset = Series.from_csv(filename, header=0)
+	dataset, validation = cst.load(filename=filename, prefix_split=prefix_split, n_last_periods=n_last_periods)
+	if transform_data_flag:
+		dataset = data_transform(dataset)
+		validation = data_transform(validation)
 	makespace()
 
 ##### initial exploratory analysis
@@ -54,6 +74,9 @@ if initial_exploratory_flag:
 	makespace()
 	# load data and create champagneTraining.csv and champagneValidation.csv
 	dataset, validation = cst.load(filename=filename, prefix_split=prefix_split, n_last_periods=n_last_periods)
+	if transform_data_flag:
+		dataset = data_transform(dataset)
+		validation = data_transform(validation)
 	makespace()
 	# split the dataset(training master set) into train, test
 	train, test = cst.train_test_split(dataset = dataset, train_size_factor = train_size_factor)
@@ -116,7 +139,7 @@ if grid_ARIMA_flag:
 if review_residual_flag:
 	residuals = cst.examine_residual_error(p = p_2, d = d_2, q = q_2, dataset = dataset, train_size_factor = train_size_factor, trend = trend, months_in_year = months_in_year, print_flag = True)
 	makespace()
-	# mean of residuals : 165.90473, try a bias correction
+	# mean of residuals : 174.022116 try a bias correction
 	residuals_bias_correction = cst.examine_residual_error_bias_correction(p = p_2, d = d_2, q = q_2, dataset = dataset, train_size_factor = train_size_factor, trend = trend, months_in_year = months_in_year, print_flag = True, bias = bias)
 	residuals_bias_correction_flip = cst.examine_residual_error_bias_correction(p = p_2, d = d_2, q = q_2, dataset = dataset, train_size_factor = train_size_factor, trend = trend, months_in_year = months_in_year, print_flag = True, bias = -bias)
 	# look at autocorrelation plots for residuals

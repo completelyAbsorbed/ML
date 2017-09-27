@@ -1,9 +1,11 @@
 monthly car sales RMSE notes
 
-persistence    : 3520.634
-ARIMA(1,1,1) : 2046.045            # significant improvement! changing order indicated 2012... negligible difference
-ARIMA(1,0,1) : 1874.408			# mild(?) improvement
+persistence    							    : 3520.634
+ARIMA(1,1,1) 							    : 2046.045   # significant improvement! changing order indicated 2012... negligible difference
+ARIMA(1,0,1) 							    : 1874.408   # mild(?) improvement
 	# p_grid = [0,1,2,3,12,15,17]
 	# d_grid = range(0,3)
 	# q_grid = [0,1,2,3,12,15,17]
-ARIMA(,,) : 
+ARIMA(1,0,1) with bias correction    : 1866.313   # maybe significant improvement
+	# ACF/PACF plots here indicate exceptional residuals at 12 months still...
+	# distribution of errors is not Gaussian, weird dip near 0, looks bimodal
