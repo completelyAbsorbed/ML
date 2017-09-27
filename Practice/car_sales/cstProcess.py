@@ -10,10 +10,11 @@ from ChronSeqTools import makespace
 ################################################################################################
 # define a series of flags so the program knows which steps we want to run
 # this helps readability, save on compute cycles, and more
+hot_open_flag = True
 initial_exploratory_flag = False
-initial_ARIMA_flag = True
-grid_ARIMA_flag = True
-review_residual_flag = False
+initial_ARIMA_flag = False
+grid_ARIMA_flag = False
+review_residual_flag = True
 validation_flag = False
 # end of flag declarations
 ################################################################################################
@@ -35,13 +36,18 @@ d_1 = 1
 q_1 = 1
 p_grid = [0,1,2,3,12,15,17]
 d_grid = range(0,3)
-q_grid = range(0,7)
-p_2 = 0
+q_grid = [0,1,2,3,12,15,17]
+p_2 = 1
 d_2 = 0
 q_2 = 1
 bias = 165.90473
 # end of non-flag declarations
 ################################################################################################
+
+##### hot open data load script
+if hot_open_flag:
+	dataset = Series.from_csv(filename, header=0)
+	makespace()
 
 ##### initial exploratory analysis
 if initial_exploratory_flag:
@@ -92,11 +98,11 @@ if initial_ARIMA_flag:
 	if not initial_exploratory_flag:
 		dataset = Series.from_csv(filename, header=0)
 		makespace()
-	# do ARIMA process (using 1,1,1 parameters to start after some experimentation)
+	# do ARIMA process (using 1,1,1 parameters to start)
 	rmse_arima_initial = cst.run_arima(p = p_1, d = d_1, q = q_1, dataset = dataset, train_size_factor = train_size_factor, trend = trend, print_flag = True)
 	### notes on initial ARIMA
 	#
-	# using (p,d,q) = (1,1,1) achieved RMSE = 956.958, a significant improvement over persistence!
+	# using (p,d,q) = (1,1,1) achieved RMSE = 2046.045, a significant improvement over persistence!
 	#
 ##### grid search ARIMA 		
 if grid_ARIMA_flag:
@@ -104,7 +110,7 @@ if grid_ARIMA_flag:
 	arima_params_best, rmse_arima_best = cst.run_grid_search_arima(p_grid = p_grid, d_grid = d_grid, q_grid = q_grid, dataset = dataset, train_size_factor = train_size_factor, trend = trend, months_in_year = months_in_year, full_print_flag = False)
 ### notes on grid search ARIMA
 #
-# best (p,d,q) = (0,0,1), best RMSE = 939.464, may or may not be a statistically significant improvement
+# best (p,d,q) = (1,0,1), best RMSE = 1874.408, nice slight improvement!
 #
 #### review residual errors an ARIMA(p_2, d_2, q_2)
 if review_residual_flag:
