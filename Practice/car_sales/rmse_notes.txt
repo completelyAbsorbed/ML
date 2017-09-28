@@ -9,3 +9,21 @@ ARIMA(1,0,1) 							    : 1874.408   # mild(?) improvement
 ARIMA(1,0,1) with bias correction    : 1866.313   # maybe significant improvement
 	# ACF/PACF plots here indicate exceptional residuals at 12 months still...
 	# distribution of errors is not Gaussian, weird dip near 0, looks bimodal
+	
+***********************************
+
+transformation 1
+
+multiply_factor = 5
+power = 0.01255
+inverse_power = 1 / power
+
+def data_transform(dataset):
+	return (multiply_factor * Series(dataset)) ** power
+
+def data_untransform(dataset):
+	return (Series(dataset) ** inverse_power) / multiply_factor
+
+	
+Best ARIMA(0,0,1) 						     : 1874.293
+Best ARIMA(0,0,1) w/ bias correction	 : _____

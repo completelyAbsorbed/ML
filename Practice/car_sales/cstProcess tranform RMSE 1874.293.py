@@ -6,11 +6,11 @@
 import ChronSeqTools as cst
 from pandas import Series
 from ChronSeqTools import makespace
-import math
+
 ################################################################################################
 # define a series of flags so the program knows which steps we want to run
 # this helps readability, save on compute cycles, and more
-hot_open_flag = True
+hot_open_flag = False
 transform_data_flag = True
 initial_exploratory_flag = True
 initial_ARIMA_flag = True
@@ -25,7 +25,6 @@ prefix_split = 'car_sales'
 training_filename = prefix_split + 'Training.csv'
 validation_filename = prefix_split + 'Validation.csv'
 stationary_filename = prefix_split + 'Stationary.csv'
-hot_filename = stationary_filename
 n_last_periods = 12
 months_in_year = 12
 train_size_factor = 0.5
@@ -34,43 +33,39 @@ group_end = '1967'   # set this for eliminating validation set
 tg_param = 'A'
 trend = 'nc'
 p_1 = 1
-d_1 = 0
-q_1 = 0
-p_grid = [0,1,2,3,12,15,17]
-d_grid = range(0,3)
-q_grid = [0,1,2,3,12,15,17]
-#p_grid = q_grid = d_grid = range(0,3)
+d_1 = 1
+q_1 = 1
+# p_grid = [0,1,2,3,12,15,17]
+# d_grid = range(0,3)
+p_grid = q_grid = d_grid = range(0,3)
+# q_grid = [0,1,2,3,12,15,17]
 p_2 = 1
-d_2 = 0
-q_2 = 0
-bias = 1.14972
+d_2 = 1
+q_2 = 1
+bias = 174.022116
 # end of non-flag declarations
 ################################################################################################
 # transformation functions, make sure these reverse each other 
 # 
 # these will be set up to transform one-column data, specific to the monthly_car_sales problem
 
-base = 1.0002
+multiply_factor = 5
+power = 0.01255
+inverse_power = 1 / power
 
 def data_transform(dataset):
-	return base ** Series(dataset)
+	return (multiply_factor * Series(dataset)) ** power
 
 def data_untransform(dataset):
-	dataset = Series(dataset)
-	for el in range(0,dataset.size):
-		dataset[el] = math.log(dataset[el], base)
-	return dataset
+	return (Series(dataset) ** inverse_power) / multiply_factor
 
-print "data_transform(99)"
-print data_transform(99)
-print  "data_untransform(data_transform(99))"
-print data_untransform(data_transform(99))
+
 
 ################################################################################################
 
 ##### hot open data load script
 if hot_open_flag:
-	dataset, validation = cst.load(filename=hot_filename, prefix_split=prefix_split, n_last_periods=n_last_periods)
+	dataset, validation = cst.load(filename=filename, prefix_split=prefix_split, n_last_periods=n_last_periods)
 	if transform_data_flag:
 		dataset = data_transform(dataset)
 		validation = data_transform(validation)
@@ -182,9 +177,6 @@ if grid_ARIMA_flag:
 #
 #### review residual errors an ARIMA(p_2, d_2, q_2)
 if review_residual_flag:
-	if transform_data_flag:
-		dataset = data_transform(dataset)
-		validation = data_transform(validation)
 	residuals = cst.examine_residual_error(p = p_2, d = d_2, q = q_2, dataset = dataset, train_size_factor = train_size_factor, trend = trend, months_in_year = months_in_year, print_flag = True)
 	makespace()
 	# mean of residuals : 174.022116 try a bias correction
@@ -193,9 +185,6 @@ if review_residual_flag:
 	# look at autocorrelation plots for residuals
 	cst.autocorrelation_plots(dataset = residuals)
 	cst.autocorrelation_plots(dataset = residuals_bias_correction)	
-	if transform_data_flag:
-		dataset = data_untransform(dataset)
-		validation = data_untransform(validation)
 ##### Finalize Model, Make Prediction, Validate Model 
 if validation_flag:
 	# save validation model

@@ -146,8 +146,6 @@ def run_arima(p, d, q, dataset, train_size_factor = 0.5, trend = 'nc', months_in
 		history.append(obs)
 		if print_flag:
 			print('>Predicted=%.3f, Expected=%3.f' % (yhat, obs))
-	# report performance
-	rmse_arima = RMSE(test, predictions, print_flag)
 	if return_residual:
 		residuals = [test[i]-predictions[i] for i in range(len(test))]
 		residuals = DataFrame(residuals)
@@ -162,7 +160,7 @@ def run_arima(p, d, q, dataset, train_size_factor = 0.5, trend = 'nc', months_in
 		pyplot.show()
 		return residuals
 	else:
-		return rmse_arima
+		return predictions, test
 	
 # create a differenced ndarray
 def difference_pd(dataset, interval=1):
@@ -241,11 +239,8 @@ def summaries(dataset, group_start, group_end, tg_param):
 	pyplot.show()
 
 # persistence model for performance baseline
-def persistence(train, test, print_flag = True):
+def persistence(train, test):
 	# walk-forward validation
-	if print_flag:
-		print '  Persistence : '
-		print
 	history = [x for x in train]
 	predictions = list()
 	for i in range(len(test)):
@@ -255,14 +250,8 @@ def persistence(train, test, print_flag = True):
 		# observation
 		obs = test[i]
 		history.append(obs)
-		if print_flag:
-			print('>Predicted=%.3f, Expected=%3.f' % (yhat, obs))
-	# report performance
-	rmse = RMSE(test, predictions, print_flag = False)
-	if print_flag:
-		print
-		print('Persistence RMSE: %.3f' % rmse)
-	return rmse
+	# return the predictions, do RMSE externally
+	return predictions
 
 # prepare data for train test split
 def train_test_split(dataset, train_size_factor = 0.5):
