@@ -105,65 +105,58 @@ def run_model(model_run, model_name, model_record_exists = model_record_exists):
 		
 ####################################################################################
 
-def initial_1_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def initial_1_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = initial_1_model, model_name = 'initial_1')	
+# run_model(model_run = initial_1_model, model_name = 'initial_1')	
 
-model_record_exists = True
+# model_record_exists = True
 
-def initial_2_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(3, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def initial_2_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(3, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = initial_2_model, model_name = 'initial_2')	
+# run_model(model_run = initial_2_model, model_name = 'initial_2')	
 
-def initial_3_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(4, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def initial_3_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(4, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = initial_3_model, model_name = 'initial_3')	
+# run_model(model_run = initial_3_model, model_name = 'initial_3')	
 
-def initial_4_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(14, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def initial_4_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(14, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = initial_4_model, model_name = 'initial_4')	
+# run_model(model_run = initial_4_model, model_name = 'initial_4')	
 
-def initial_5_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(10, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def initial_5_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(10, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = initial_5_model, model_name = 'initial_5')	
+# run_model(model_run = initial_5_model, model_name = 'initial_5')	
 
 ####################################################################################
 # initial run notes
 # 
-# initial_1: 0.00004172 (0.00002517) MSE
-# initial_2: 0.00003946 (0.00002124) MSE
-# initial_3: 0.00003955 (0.00002184) MSE
-# initial_4: 0.00004207 (0.00002453) MSE
-# initial_5: 0.00004341 (0.00002821) MSE
-#
-# try more! stacking models this time 
 ####################################################################################
 
 # def stack_1_model(): 		#define model 
@@ -229,13 +222,6 @@ run_model(model_run = initial_5_model, model_name = 'initial_5')
 ####################################################################################
 # stack run notes
 # 
-# stack_1: 0.00004078 (0.00002594) MSE
-# stack_2: 0.00004076 (0.00002121) MSE
-# stack_3: 0.00005295 (0.00004227) MSE
-# stack_4: 0.00006445 (0.00004245) MSE
-# stack_5: 0.00006505 (0.00004033) MSE
-#
-# keep trying new designs!
 ####################################################################################
 
 # def new_shapes_1_model(): 		#define model 
@@ -292,18 +278,7 @@ run_model(model_run = initial_5_model, model_name = 'initial_5')
 ####################################################################################
 # new_shapes run notes
 # 
-# new_shapes_1: 0.00004986 (0.00002715) MSE
-# new_shapes_2: 0.00005190 (0.00003402) MSE
-# new_shapes_3: 0.00004598 (0.00002443) MSE
-# new_shapes_4: 0.00004712 (0.00002699) MSE
-# new_shapes_5: 0.00004865 (0.00003180) MSE
-#
-# we've done a few runs, our three best results so far are :
-#		- initial_2
-#		- initial_3
-#		- stack_2
-# 
-#  next, make new designs, taking these into consideration
+
 ####################################################################################
 
 # def pyramids_1_model(): 		#define model 
@@ -511,29 +486,8 @@ run_model(model_run = initial_5_model, model_name = 'initial_5')
 ####################################################################################
 # pyramids, derivative run notes
 # 
-# pyramids_1: 0.00006523 (0.00003958) MSE
-# pyramids_2: 0.00006505 (0.00004033) MSE
-# pyramids_3: 0.00006426 (0.00004261) MSE
-# pyramids_4: 0.00005989 (0.00004357) MSE
-# pyramids_5: 0.00004049 (0.00001963) MSE
-# pyramids_6: 0.00004524 (0.00003244) MSE
-# derivative_1: 0.00006170 (0.00004181) MSE
-# derivative_2: 0.00005452 (0.00004161) MSE
-# derivative_3: 0.00006445 (0.00004245) MSE
-# derivative_4: 0.00006350 (0.00004324) MSE
-# derivative_5: 0.00006505 (0.00004033) MSE
-# derivative_6: 0.00006505 (0.00004033) MSE
-# derivative_7: 0.00005658 (0.00004103) MSE
-# derivative_8: 0.00006344 (0.00004124) MSE
-# derivative_9: 0.00006445 (0.00004245) MSE
-# derivative_10: 0.00006445 (0.00004245) MSE
+
 #
-# the only notable results here are from :
-#		- pyramids_5
-#		- and minorly pyramids_6 
-#
-# make secondary models based on the two pyramid models,
-#	and initial_1 and initial_2
 ####################################################################################
 
 # def secondary_1_model(): 		#define model 
@@ -628,7 +582,7 @@ run_model(model_run = initial_5_model, model_name = 'initial_5')
 	
 # run_model(model_run = secondary_8_model, model_name = 'secondary_8')	
 
-## take a note from new_shapes_1 and use a first hidden layer width of 49
+take a note from new_shapes_1 and use a first hidden layer width of 49
 
 # def secondary_9_model(): 		#define model 
 	# model = Sequential()	# create model
@@ -725,23 +679,7 @@ run_model(model_run = initial_5_model, model_name = 'initial_5')
 ####################################################################################
 # seconday run notes
 # 
-# secondary_1: 0.00005823 (0.00004056) MSE
-# secondary_2: 0.00004226 (0.00003117) MSE	*
-# secondary_3: 0.00006118 (0.00004256) MSE
-# secondary_4: 0.00004575 (0.00003185) MSE	*
-# secondary_5: 0.00005391 (0.00004240) MSE
-# secondary_6: 0.00005237 (0.00004216) MSE
-# secondary_7: 0.00005989 (0.00004357) MSE
-# secondary_8: 0.00004364 (0.00003177) MSE	*
-# secondary_9: 0.00005823 (0.00003446) MSE
-# secondary_10: 0.00005051 (0.00003361) MSE
-# secondary_11: 0.00005033 (0.00003429) MSE
-# secondary_12: 0.00004795 (0.00002763) MSE	*
-# secondary_13: 0.00006370 (0.00004118) MSE
-# secondary_14: 0.00005301 (0.00003580) MSE
-# secondary_15: 0.00005309 (0.00002346) MSE
-# secondary_16: 0.00004957 (0.00002246) MSE	*
-#
+
 # 
 # somewhat disappointing results, hoping for a breakthrough to beat 0.00003946
 ####################################################################################
@@ -805,7 +743,7 @@ run_model(model_run = initial_5_model, model_name = 'initial_5')
 	
 # run_model(model_run = further_5_model, model_name = 'further_5')	
 
-#
+
 
 # def further_6_model(): 		#define model 
 	# model = Sequential()	# create model
@@ -864,7 +802,7 @@ run_model(model_run = initial_5_model, model_name = 'initial_5')
 	
 # run_model(model_run = further_10_model, model_name = 'further_10')	
 
-#
+
 
 # def further_11_model(): 		#define model 
 	# model = Sequential()	# create model
@@ -926,7 +864,7 @@ run_model(model_run = initial_5_model, model_name = 'initial_5')
 	
 # run_model(model_run = further_15_model, model_name = 'further_15')	
 
-#
+
 
 # def further_16_model(): 		#define model 
 	# model = Sequential()	# create model
@@ -996,26 +934,7 @@ run_model(model_run = initial_5_model, model_name = 'initial_5')
 ####################################################################################
 # further run notes
 # 
-# further_1: 0.00005827 (0.00004054) MSE
-# further_2: 0.00005918 (0.00004335) MSE
-# further_3: 0.00004620 (0.00003626) MSE
-# further_4: 0.00004990 (0.00003224) MSE
-# further_5: 0.00005037 (0.00003172) MSE
-# further_6: 0.00004856 (0.00003030) MSE
-# further_7: 0.00004461 (0.00002520) MSE
-# further_8: 0.00005212 (0.00003230) MSE
-# further_9: 0.00005318 (0.00003150) MSE
-# further_10: 0.00005495 (0.00002763) MSE
-# further_11: 0.00005311 (0.00003360) MSE
-# further_12: 0.00006273 (0.00004262) MSE
-# further_13: 0.00005212 (0.00003509) MSE
-# further_14: 0.00005006 (0.00003205) MSE
-# further_15: 0.00005037 (0.00003172) MSE
-# further_16: 0.00006445 (0.00004245) MSE
-# further_17: 0.00006445 (0.00004245) MSE
-# further_18: 0.00006445 (0.00004245) MSE
-# further_19: 0.00005829 (0.00003338) MSE
-# further_20: 0.00006305 (0.00004293) MSE
+
 # 
 # results are still disappointing, probably because our target is too hard to predict (depends on much much more than our data)
 # 
