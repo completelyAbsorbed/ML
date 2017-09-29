@@ -436,7 +436,7 @@ numpy.random.seed(seed)		# evaluate model with standardized dataset
 # 
 ####################################################################################
 
-def tertiary_5_alt_1_model(): 		#define tertiary_5_alt_1 model # ()  
+def tertiary_5_alt_1_model(): 		#define tertiary_5_alt_1 model # 12559(6343)  
 	model = Sequential()	# create model
 	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(19, kernel_initializer='normal', activation='relu'))
@@ -453,7 +453,7 @@ kfold = KFold(n_splits=4, random_state=seed)
 results = cross_val_score(pipeline, X, Y, cv=kfold)
 print("tertiary_5_alt_1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def tertiary_5_alt_2_model(): 		#define tertiary_5_alt_2 model # ()  
+def tertiary_5_alt_2_model(): 		#define tertiary_5_alt_2 model # 9083(3636)  
 	model = Sequential()	# create model
 	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(17, kernel_initializer='normal', activation='relu'))
@@ -470,7 +470,7 @@ kfold = KFold(n_splits=4, random_state=seed)
 results = cross_val_score(pipeline, X, Y, cv=kfold)
 print("tertiary_5_alt_2: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def tertiary_5_alt_3_model(): 		#define tertiary_5_alt_3 model # ()  
+def tertiary_5_alt_3_model(): 		#define tertiary_5_alt_3 model # 6699(1496)  
 	model = Sequential()	# create model
 	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(20, kernel_initializer='normal', activation='relu'))
@@ -487,7 +487,7 @@ kfold = KFold(n_splits=4, random_state=seed)
 results = cross_val_score(pipeline, X, Y, cv=kfold)
 print("tertiary_5_alt_3: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def tertiary_5_alt_4_model(): 		#define tertiary_5_alt_4 model # ()  
+def tertiary_5_alt_4_model(): 		#define tertiary_5_alt_4 model # 15032(13207)  
 	model = Sequential()	# create model
 	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(22, kernel_initializer='normal', activation='relu'))
@@ -504,7 +504,7 @@ kfold = KFold(n_splits=4, random_state=seed)
 results = cross_val_score(pipeline, X, Y, cv=kfold)
 print("tertiary_5_alt_4: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def tertiary_5_alt_5_model(): 		#define tertiary_5_alt_5 model # ()  
+def tertiary_5_alt_5_model(): 		#define tertiary_5_alt_5 model # 8338(3280)  
 	model = Sequential()	# create model
 	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(24, kernel_initializer='normal', activation='relu'))
@@ -521,7 +521,7 @@ kfold = KFold(n_splits=4, random_state=seed)
 results = cross_val_score(pipeline, X, Y, cv=kfold)
 print("tertiary_5_alt_5: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def tertiary_5_alt_6_model(): 		#define tertiary_5_alt_6 model # ()  
+def tertiary_5_alt_6_model(): 		#define tertiary_5_alt_6 model # 8753(6441)  
 	model = Sequential()	# create model
 	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(26, kernel_initializer='normal', activation='relu'))
@@ -538,7 +538,7 @@ kfold = KFold(n_splits=4, random_state=seed)
 results = cross_val_score(pipeline, X, Y, cv=kfold)
 print("tertiary_5_alt_6: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def tertiary_5_alt_7_model(): 		#define tertiary_5_alt_7 model # ()  
+def tertiary_5_alt_7_model(): 		#define tertiary_5_alt_7 model # 5713(2402)  
 	model = Sequential()	# create model
 	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
@@ -555,7 +555,7 @@ kfold = KFold(n_splits=4, random_state=seed)
 results = cross_val_score(pipeline, X, Y, cv=kfold)
 print("tertiary_5_alt_7: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def tertiary_5_alt_8_model(): 		#define tertiary_5_alt_8 model # ()  
+def tertiary_5_alt_8_model(): 		#define tertiary_5_alt_8 model # 9241(5760)  
 	model = Sequential()	# create model
 	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
 	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
@@ -1159,4 +1159,49 @@ results = cross_val_score(pipeline, X, Y, cv=kfold)
 print("tertiary_1_alt_10_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
 ##########
+# tertiary_5_alt_1: 12559.9201 (6343.5722) MSE
+# tertiary_5_alt_2: 9083.0533 (3635.9570) MSE
+# tertiary_5_alt_3: 6698.7099 (1496.4358) MSE
+# tertiary_5_alt_4: 15032.1349 (13206.9708) MSE
+# tertiary_5_alt_5: 8337.7641 (3279.8210) MSE
+# tertiary_5_alt_6: 8753.3249 (6440.5050) MSE
+# tertiary_5_alt_7: 5713.3653 (2402.5405) MSE				# A 
+# tertiary_5_alt_8: 9240.7840 (5759.5981) MSE
+# tertiary_5_alt_9: 10170.9618 (5002.9874) MSE
+# tertiary_5_alt_10: 6532.4723 (2210.9217) MSE
+# tertiary_1_alt_1: 14934.2947 (8926.9461) MSE
+# tertiary_1_alt_2: 17543.6376 (9622.4625) MSE
+# tertiary_1_alt_3: 11878.7781 (3430.1698) MSE
+# tertiary_1_alt_4: 12825.9241 (8702.1585) MSE
+# tertiary_1_alt_5: 13202.8728 (7553.4016) MSE
+# tertiary_1_alt_6: 7845.5975 (3064.9856) MSE
+# tertiary_1_alt_7: 8782.6812 (1375.1374) MSE
+# tertiary_1_alt_8: 7665.6011 (3578.2730) MSE
+# tertiary_1_alt_9: 9559.3172 (5454.5706) MSE
+# tertiary_1_alt_10: 8206.2840 (3722.9984) MSE
+# tertiary_5_alt_1_v1: 11274.7287 (5001.6628) MSE
+# tertiary_5_alt_2_v1: 9348.5114 (1116.5686) MSE
+# tertiary_5_alt_3_v1: 7333.3944 (2646.2335) MSE
+# tertiary_5_alt_4_v1: 5897.0174 (1838.6255) MSE			# B 
+# tertiary_5_alt_5_v1: 6305.1817 (1447.2168) MSE
+# tertiary_5_alt_6_v1: 10788.4687 (7809.6964) MSE
+# tertiary_5_alt_7_v1: 7937.4837 (3672.7051) MSE
+# tertiary_5_alt_8_v1: 5691.2505 (1559.7318) MSE			# C !!!! great result and very low std
+# tertiary_5_alt_9_v1: 11614.5410 (3383.0192) MSE
+# tertiary_5_alt_10_v1: 6757.9056 (2722.9458) MSE
+# tertiary_1_alt_1_v1: 20746.0778 (8801.0268) MSE
+# tertiary_1_alt_2_v1: 13169.8698 (7632.0453) MSE
+# tertiary_1_alt_3_v1: 8619.8844 (3550.3324) MSE
+# tertiary_1_alt_4_v1: 15439.8644 (11749.9562) MSE
+# tertiary_1_alt_5_v1: 13067.4719 (8580.6133) MSE
+# tertiary_1_alt_6_v1: 12886.1772 (3321.9299) MSE
+# tertiary_1_alt_7_v1: 6822.2222 (2483.3408) MSE
+# tertiary_1_alt_8_v1: 11225.1572 (4544.1746) MSE
+# tertiary_1_alt_9_v1: 5798.6547 (2339.5162) MSE			# D
+# tertiary_1_alt_10_v1: 7949.9455 (4882.9633) MSE
 
+# Best to Worst of best four models (this run, also best four models of all runs) : C, A, B, D
+#
+# I think I'm happy with the reslts of C, and am going to spin up maybe 10 more models based on these 4,
+# will move on to another project after this treasure-hunting round 
+##########
