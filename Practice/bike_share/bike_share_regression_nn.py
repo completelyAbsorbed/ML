@@ -1206,233 +1206,266 @@ numpy.random.seed(seed)		# evaluate model with standardized dataset
 # will move on to another project after this treasure-hunting round 
 ##########
 
-def treasure_hunt_1_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(38, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_1_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(38, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def treasure_hunt_2_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_2_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_2_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_2: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_2_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_2: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def treasure_hunt_3_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_3_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_3_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_3: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_3_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_3: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def treasure_hunt_4_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_4_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_4_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_4: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_4_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_4: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def treasure_hunt_5_a_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(33, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_5_a_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(33, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_5_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_5: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_5_a_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_5_a: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def treasure_hunt_5_b_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(33, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(23, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_5_b_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(33, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(23, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_5_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_5: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_5_b_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_5_b: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def treasure_hunt_5_c_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(33, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(23, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_5_c_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(33, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(23, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_5_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_5: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_5_c_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_5_c: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def treasure_hunt_6_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(48, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(38, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_6_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(48, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(38, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_6_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_6: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_6_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_6: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def treasure_hunt_7_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(48, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(38, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_7_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(48, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(38, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_7_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_7: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_7_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_7: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def treasure_hunt_8_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(38, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_8_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(38, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_8_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_8: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_8_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_8: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def treasure_hunt_9_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(22, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_9_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(22, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_9_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_9: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_9_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_9: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
-def treasure_hunt_10_model(): 		#define model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(22, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def treasure_hunt_10_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(22, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_10_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("treasure_hunt_10: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_10_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("treasure_hunt_10: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
 
 ##########
 # post treasure-hunting notes
 # 
+# treasure_hunt_1:    7781.8471 (5970.7003) MSE
+# treasure_hunt_2:    9377.0311 (4517.4399) MSE
+# treasure_hunt_3:    6757.9056 (2722.9458) MSE
+# treasure_hunt_4:    7154.1196 (3330.7417) MSE
+# treasure_hunt_5_a: 6851.7413 (3014.2332) MSE
+# treasure_hunt_5_b: 6455.2076 (1965.3980) MSE
+# treasure_hunt_5_c: 6111.6082 (2708.8775) MSE
+# treasure_hunt_6:    9784.4739 (4396.0060) MSE
+# treasure_hunt_7:    6412.9884 (2738.2481) MSE
+# treasure_hunt_8:    8742.1431 (6556.9743) MSE
+# treasure_hunt_9:    6701.1283 (3139.9642) MSE
+# treasure_hunt_10:  8685.4364 (3442.6768) MSE
 # 
+# no improvement over best model
+##########
+# best model :
+# 
+# def tertiary_5_alt_8_v1_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_8_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_8_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 # 
 ##########
