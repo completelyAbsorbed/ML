@@ -1450,7 +1450,7 @@ numpy.random.seed(seed)		# evaluate model with standardized dataset
 ##########
 # best model :
 # 
-# def tertiary_5_alt_8_v1_model(): 		#define model # ()  
+# def tertiary_5_alt_8_v1_model(): 		#define model # 5691(1560)  
 	# model = Sequential()	# create model
 	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
 	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))

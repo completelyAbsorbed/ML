@@ -31,7 +31,7 @@ X = dataset[:, 3:10]   # date is represented in subsequent columns, so we skip c
 Y = dataset[:, 10]
 
 # define base model_selection
-def baseline_model(): # 18974.1539(10001.5383)
+def baseline_model(): # 0.00003703 (0.00002138) MSE
 	# create model
 	model = Sequential()
 	model.add(Dense(7, input_dim = 7, kernel_initializer = 'normal', activation = 'relu'))
@@ -45,26 +45,26 @@ numpy.random.seed(seed)		# evaluate model with standardized dataset
 
 
 
-estimator = KerasRegressor(build_fn = baseline_model, nb_epoch=100, batch_size=5, verbose=0)
+# estimator = KerasRegressor(build_fn = baseline_model, nb_epoch=100, batch_size=5, verbose=0)
 
-kfold = KFold(n_splits = 10, random_state = seed)		# evaluate the baseline model with 10-fold cross validation
-results = cross_val_score(estimator, X, Y, cv = kfold)
-print("Results: %.4f (%.4f) MSE") % (results.mean(), results.std()) # 20164.0887 (11699.7947)
+# kfold = KFold(n_splits = 10, random_state = seed)		# evaluate the baseline model with 10-fold cross validation
+# results = cross_val_score(estimator, X, Y, cv = kfold)
+# print("Results: %.8f (%.8f) MSE") % (results.mean(), results.std()) # 0.00003703 (0.00002138) MSE
 
-numpy.random.seed(seed)	# create Pipeline to perform standardization avoiding data leak and  evaluate model with standardized dataset 
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=baseline_model, epochs=100, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=10, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("Standardized: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# numpy.random.seed(seed)	# create Pipeline to perform standardization avoiding data leak and  evaluate model with standardized dataset 
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=baseline_model, epochs=100, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=10, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("Standardized: %.8f (%.8f) MSE" % (results.mean(), results.std()))
 
 ####################################################################################
 
 # convenient example
 
-# def long_1_model(): 		#define long_1 model # mean(std)
+# def long_1_model(): 		#define model 
 	# model = Sequential()	# create model
 	# model.add(Dense(13, input_dim=13, kernel_initializer='normal', activation='relu'))
 	# model.add(Dense(13, kernel_initializer='normal', activation='relu'))
@@ -72,13 +72,72 @@ print("Standardized: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
 	# return model
 
-# numpy.random.seed(seed)
-# estimators = []
-# estimators.append(('standardize', StandardScaler()))
-# estimators.append(('mlp', KerasRegressor(build_fn=long_1_model, epochs=100, batch_size=5, verbose=0)))
-# pipeline = Pipeline(estimators)
-# kfold = KFold(n_splits=10, random_state=seed)
-# results = cross_val_score(pipeline, X, Y, cv=kfold)
-# print("long_1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# save space and functionalize the model run	
 	
+def run_model(model_run, model_name):
+	numpy.random.seed(seed)
+	estimators = []
+	estimators.append(('standardize', StandardScaler()))
+	estimators.append(('mlp', KerasRegressor(build_fn=model_run, epochs=100, batch_size=5, verbose=0)))
+	pipeline = Pipeline(estimators)
+	kfold = KFold(n_splits=10, random_state=seed)
+	results = cross_val_score(pipeline, X, Y, cv=kfold)
+	print(model_name + ": %.8f (%.8f) MSE" % (results.mean(), results.std()))
+		
 ####################################################################################
+
+def initial_1_model(): 		#define model 
+	model = Sequential()	# create model
+	model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+	
+run_model(model_run = initial_1_model, model_name = 'initial_1')	
+
+def initial_2_model(): 		#define model 
+	model = Sequential()	# create model
+	model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(3, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+	
+run_model(model_run = initial_2_model, model_name = 'initial_2')	
+
+def initial_3_model(): 		#define model 
+	model = Sequential()	# create model
+	model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(4, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+	
+run_model(model_run = initial_3_model, model_name = 'initial_3')	
+
+def initial_4_model(): 		#define model 
+	model = Sequential()	# create model
+	model.add(Dense(14, input_dim=7, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+	
+run_model(model_run = initial_4_model, model_name = 'initial_4')	
+
+def initial_5_model(): 		#define model 
+	model = Sequential()	# create model
+	model.add(Dense(10, input_dim=7, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+	
+run_model(model_run = initial_5_model, model_name = 'initial_5')	
+
+####################################################################################
+# initial run notes
+# 
+
+# 
+####################################################################################
+
+	
