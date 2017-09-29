@@ -1,4 +1,4 @@
-# istanbul_diff.py
+# istanbul_usd.py
 import numpy
 import pandas
 from keras.models import Sequential
@@ -23,12 +23,16 @@ from sklearn.pipeline import Pipeline
 
 
 
+# flag declaration
+model_record_exists = True
+
+
 # load dataset
 dataframe = pandas.read_csv("istanbul_diff.csv")
 dataset = dataframe.values
 # split into input (X) and output (Y) variables
 X = dataset[:, 3:10]   # date is represented in subsequent columns, so we skip column 0
-Y = dataset[:, 10]
+Y = dataset[:, 2]		# ISE_usd
 
 # define base model_selection
 def baseline_model(): # 
@@ -74,7 +78,7 @@ numpy.random.seed(seed)		# evaluate model with standardized dataset
 
 # save space and functionalize the model run	
 	
-def run_model(model_run, model_name):
+def run_model(model_run, model_name, model_record_exists = model_record_exists):
 	numpy.random.seed(seed)
 	estimators = []
 	estimators.append(('standardize', StandardScaler()))
@@ -83,55 +87,72 @@ def run_model(model_run, model_name):
 	kfold = KFold(n_splits=10, random_state=seed)
 	results = cross_val_score(pipeline, X, Y, cv=kfold)
 	print(model_name + ": %.8f (%.8f) MSE" % (results.mean(), results.std()))
+	new_row = [model_name, results.mean(), results.std()]
+	# if model_record_exists:
+		# model_dataframe = pandas.read_csv("model_record_usd.csv")
+		# model_dataframe.loc[model_dataframe.shape[0]] = new_row
+	# else:
+		# model_dataframe = pandas.DataFrame(columns = ['model_name','MSE_mean', 'MSE_std'])
+		# model_dataframe.loc[0] = new_row
+	###
+	model_dataframe = pandas.DataFrame(columns = ['model_name','MSE_mean', 'MSE_std'])
+	model_dataframe.loc[0] = new_row
+	###	
+	#model_dataframe = model_dataframe.drop_duplicates
+	with open('model_record_usd.csv', 'a') as f:
+		model_dataframe.to_csv(f, header=False)
+	#model_dataframe.to_csv('model_record_usd.csv')
 		
 ####################################################################################
 
-# def initial_1_model(): 		#define model 
-	# model = Sequential()	# create model
-	# model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
-	# model.add(Dense(1, kernel_initializer='normal'))
-	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	# return model
+def initial_1_model(): 		#define model 
+	model = Sequential()	# create model
+	model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
 	
-# run_model(model_run = initial_1_model, model_name = 'initial_1')	
+run_model(model_run = initial_1_model, model_name = 'initial_1')	
 
-# def initial_2_model(): 		#define model 
-	# model = Sequential()	# create model
-	# model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
-	# model.add(Dense(3, kernel_initializer='normal', activation='relu'))
-	# model.add(Dense(1, kernel_initializer='normal'))
-	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	# return model
-	
-# run_model(model_run = initial_2_model, model_name = 'initial_2')	
+model_record_exists = True
 
-# def initial_3_model(): 		#define model 
-	# model = Sequential()	# create model
-	# model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
-	# model.add(Dense(4, kernel_initializer='normal', activation='relu'))
-	# model.add(Dense(1, kernel_initializer='normal'))
-	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	# return model
+def initial_2_model(): 		#define model 
+	model = Sequential()	# create model
+	model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(3, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
 	
-# run_model(model_run = initial_3_model, model_name = 'initial_3')	
+run_model(model_run = initial_2_model, model_name = 'initial_2')	
 
-# def initial_4_model(): 		#define model 
-	# model = Sequential()	# create model
-	# model.add(Dense(14, input_dim=7, kernel_initializer='normal', activation='relu'))
-	# model.add(Dense(1, kernel_initializer='normal'))
-	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	# return model
+def initial_3_model(): 		#define model 
+	model = Sequential()	# create model
+	model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(4, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
 	
-# run_model(model_run = initial_4_model, model_name = 'initial_4')	
+run_model(model_run = initial_3_model, model_name = 'initial_3')	
 
-# def initial_5_model(): 		#define model 
-	# model = Sequential()	# create model
-	# model.add(Dense(10, input_dim=7, kernel_initializer='normal', activation='relu'))
-	# model.add(Dense(1, kernel_initializer='normal'))
-	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	# return model
+def initial_4_model(): 		#define model 
+	model = Sequential()	# create model
+	model.add(Dense(14, input_dim=7, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
 	
-# run_model(model_run = initial_5_model, model_name = 'initial_5')	
+run_model(model_run = initial_4_model, model_name = 'initial_4')	
+
+def initial_5_model(): 		#define model 
+	model = Sequential()	# create model
+	model.add(Dense(10, input_dim=7, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+	
+run_model(model_run = initial_5_model, model_name = 'initial_5')	
 
 ####################################################################################
 # initial run notes
@@ -1001,97 +1022,97 @@ def run_model(model_run, model_name):
 # try a last ditch effort, 'exploder' models : utilizing layers sized as powers of the number of inputs(did this a little already)
 ####################################################################################
 
-def exploder_1_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(343, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def exploder_1_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(343, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = exploder_1_model, model_name = 'exploder_1')	
+# run_model(model_run = exploder_1_model, model_name = 'exploder_1')	
 
-def exploder_2_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(343, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(49, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def exploder_2_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(343, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(49, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = exploder_2_model, model_name = 'exploder_2')	
+# run_model(model_run = exploder_2_model, model_name = 'exploder_2')	
 
-def exploder_3_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(343, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(49, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def exploder_3_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(343, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(49, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = exploder_3_model, model_name = 'exploder_3')	
+# run_model(model_run = exploder_3_model, model_name = 'exploder_3')	
 
-def exploder_4_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(343, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def exploder_4_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(343, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = exploder_4_model, model_name = 'exploder_4')	
+# run_model(model_run = exploder_4_model, model_name = 'exploder_4')	
 
-def exploder_5_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(2401, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def exploder_5_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(2401, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = exploder_5_model, model_name = 'exploder_5')	
+# run_model(model_run = exploder_5_model, model_name = 'exploder_5')	
 
-def exploder_6_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(2401, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(343, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def exploder_6_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(2401, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(343, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = exploder_6_model, model_name = 'exploder_6')	
+# run_model(model_run = exploder_6_model, model_name = 'exploder_6')	
 
-def exploder_7_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(2401, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(343, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(49, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def exploder_7_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(2401, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(343, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(49, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = exploder_7_model, model_name = 'exploder_7')	
+# run_model(model_run = exploder_7_model, model_name = 'exploder_7')	
 
-def exploder_8_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(2401, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(343, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(49, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def exploder_8_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(2401, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(343, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(49, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = exploder_8_model, model_name = 'exploder_8')	
+# run_model(model_run = exploder_8_model, model_name = 'exploder_8')	
 
-def exploder_9_model(): 		#define model 
-	model = Sequential()	# create model
-	model.add(Dense(2401, input_dim=7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(49, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
+# def exploder_9_model(): 		#define model 
+	# model = Sequential()	# create model
+	# model.add(Dense(2401, input_dim=7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(49, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
 	
-run_model(model_run = exploder_9_model, model_name = 'exploder_9')	
+# run_model(model_run = exploder_9_model, model_name = 'exploder_9')	
 
 
 ####################################################################################
@@ -1099,5 +1120,5 @@ run_model(model_run = exploder_9_model, model_name = 'exploder_9')
 # 
 
 # 
-# our initiial results seem no better than our refined attempts, though our MSE seems quite favorable, anyway
+# 
 ####################################################################################
