@@ -436,727 +436,727 @@ numpy.random.seed(seed)		# evaluate model with standardized dataset
 # 
 ####################################################################################
 
-def tertiary_5_alt_1_model(): 		#define tertiary_5_alt_1 model # 12559(6343)  
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(19, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_2_model(): 		#define tertiary_5_alt_2 model # 9083(3636)  
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(17, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_2_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_2: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_3_model(): 		#define tertiary_5_alt_3 model # 6699(1496)  
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(20, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_3_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_3: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_4_model(): 		#define tertiary_5_alt_4 model # 15032(13207)  
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(22, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_4_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_4: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_5_model(): 		#define tertiary_5_alt_5 model # 8338(3280)  
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(24, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_5_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_5: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_6_model(): 		#define tertiary_5_alt_6 model # 8753(6441)  
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(26, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_6_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_6: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_7_model(): 		#define tertiary_5_alt_7 model # 5713(2402)  
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_7_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_7: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_8_model(): 		#define tertiary_5_alt_8 model # 9241(5760)  
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_8_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_8: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_9_model(): 		#define tertiary_5_alt_9 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(19, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_9_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_9: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_10_model(): 		#define tertiary_5_alt_10 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_10_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_10: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-###
-
-def tertiary_1_alt_1_model(): 		#define tertiary_1_alt_1 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(3, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_2_model(): 		#define tertiary_1_alt_2 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(4, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_2_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_2: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_3_model(): 		#define tertiary_1_alt_3 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_3_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_3: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_4_model(): 		#define tertiary_1_alt_4 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(6, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_4_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_4: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_5_model(): 		#define tertiary_1_alt_5 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(5, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_5_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_5: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_6_model(): 		#define tertiary_1_alt_6 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_6_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_6: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_7_model(): 		#define tertiary_1_alt_7 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_7_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_7: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_8_model(): 		#define tertiary_1_alt_8 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(9, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_8_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_8: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_9_model(): 		#define tertiary_1_alt_9 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_9_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_9: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_10_model(): 		#define tertiary_1_alt_10 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(17, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_10_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_10: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-##########
-
-def tertiary_5_alt_1_v1_model(): 		#define tertiary_5_alt_1 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(19, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_1_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_1_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_2_v1_model(): 		#define tertiary_5_alt_2 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(17, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_2_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_2_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_3_v1_model(): 		#define tertiary_5_alt_3 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(20, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_3_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_3_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_4_v1_model(): 		#define tertiary_5_alt_4 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(22, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_4_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_4_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_5_v1_model(): 		#define tertiary_5_alt_5 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(24, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_5_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_5_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_6_v1_model(): 		#define tertiary_5_alt_6 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(26, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_6_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_6_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_7_v1_model(): 		#define tertiary_5_alt_7 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_7_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_7_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_8_v1_model(): 		#define tertiary_5_alt_8 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_8_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_8_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_9_v1_model(): 		#define tertiary_5_alt_9 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(19, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_9_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_9_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_5_alt_10_v1_model(): 		#define tertiary_5_alt_10 model # ()  
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_10_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_5_alt_10_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-###
-
-def tertiary_1_alt_1_v1_model(): 		#define tertiary_1_alt_1 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(3, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_1_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_1_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_2_v1_model(): 		#define tertiary_1_alt_2 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(4, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_2_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_2_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_3_v1_model(): 		#define tertiary_1_alt_3 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_3_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_3_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_4_v1_model(): 		#define tertiary_1_alt_4 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(6, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_4_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_4_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_5_v1_model(): 		#define tertiary_1_alt_5 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(5, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_5_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_5_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_6_v1_model(): 		#define tertiary_1_alt_6 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(14, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_6_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_6_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_7_v1_model(): 		#define tertiary_1_alt_7 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(7, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_7_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_7_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_8_v1_model(): 		#define tertiary_1_alt_8 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(9, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_8_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_8_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_9_v1_model(): 		#define tertiary_1_alt_9 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_9_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_9_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
-
-def tertiary_1_alt_10_v1_model(): 		#define tertiary_1_alt_10 model # 7845(3064)		# big improve!
-	model = Sequential()	# create model
-	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(17, kernel_initializer='normal', activation='relu'))
-	model.add(Dense(1, kernel_initializer='normal'))
-	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
-	return model
-
-numpy.random.seed(seed)
-estimators = []
-estimators.append(('standardize', StandardScaler()))
-estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_10_v1_model, epochs=50, batch_size=5, verbose=0)))
-pipeline = Pipeline(estimators)
-kfold = KFold(n_splits=4, random_state=seed)
-results = cross_val_score(pipeline, X, Y, cv=kfold)
-print("tertiary_1_alt_10_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+# def tertiary_5_alt_1_model(): 		#define tertiary_5_alt_1 model # 12559(6343)  
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(19, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_2_model(): 		#define tertiary_5_alt_2 model # 9083(3636)  
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(17, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_2_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_2: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_3_model(): 		#define tertiary_5_alt_3 model # 6699(1496)  
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(20, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_3_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_3: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_4_model(): 		#define tertiary_5_alt_4 model # 15032(13207)  
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(22, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_4_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_4: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_5_model(): 		#define tertiary_5_alt_5 model # 8338(3280)  
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(24, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_5_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_5: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_6_model(): 		#define tertiary_5_alt_6 model # 8753(6441)  
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(26, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_6_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_6: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_7_model(): 		#define tertiary_5_alt_7 model # 5713(2402)  
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_7_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_7: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_8_model(): 		#define model # 9241(5760)  
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_8_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_8: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_9_model(): 		#define tertiary_5_alt_9 model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(19, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_9_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_9: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_10_model(): 		#define tertiary_5_alt_10 model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_10_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_10: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+##
+
+# def tertiary_1_alt_1_model(): 		#define tertiary_1_alt_1 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(3, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_2_model(): 		#define tertiary_1_alt_2 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(4, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_2_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_2: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_3_model(): 		#define tertiary_1_alt_3 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_3_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_3: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_4_model(): 		#define tertiary_1_alt_4 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(6, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_4_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_4: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_5_model(): 		#define tertiary_1_alt_5 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(5, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_5_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_5: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_6_model(): 		#define tertiary_1_alt_6 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_6_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_6: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_7_model(): 		#define tertiary_1_alt_7 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_7_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_7: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_8_model(): 		#define tertiary_1_alt_8 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(9, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_8_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_8: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_9_model(): 		#define tertiary_1_alt_9 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_9_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_9: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_10_model(): 		#define tertiary_1_alt_10 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(28, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(17, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_10_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_10: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+#########
+
+# def tertiary_5_alt_1_v1_model(): 		#define tertiary_5_alt_1 model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(19, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_1_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_1_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_2_v1_model(): 		#define tertiary_5_alt_2 model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(17, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_2_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_2_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_3_v1_model(): 		#define tertiary_5_alt_3 model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(20, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_3_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_3_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_4_v1_model(): 		#define tertiary_5_alt_4 model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(22, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_4_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_4_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_5_v1_model(): 		#define tertiary_5_alt_5 model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(24, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_5_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_5_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_6_v1_model(): 		#define tertiary_5_alt_6 model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(26, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_6_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_6_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_7_v1_model(): 		#define tertiary_5_alt_7 model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_7_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_7_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_8_v1_model(): 		#define model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_8_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_8_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_9_v1_model(): 		#define tertiary_5_alt_9 model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(19, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_9_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_9_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_5_alt_10_v1_model(): 		#define tertiary_5_alt_10 model # ()  
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_5_alt_10_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_5_alt_10_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+##
+
+# def tertiary_1_alt_1_v1_model(): 		#define tertiary_1_alt_1 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(3, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_1_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_1_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_2_v1_model(): 		#define tertiary_1_alt_2 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(4, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_2_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_2_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_3_v1_model(): 		#define tertiary_1_alt_3 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_3_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_3_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_4_v1_model(): 		#define tertiary_1_alt_4 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(6, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_4_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_4_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_5_v1_model(): 		#define tertiary_1_alt_5 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(5, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_5_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_5_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_6_v1_model(): 		#define tertiary_1_alt_6 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(14, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_6_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_6_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_7_v1_model(): 		#define tertiary_1_alt_7 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(7, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_7_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_7_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_8_v1_model(): 		#define tertiary_1_alt_8 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(9, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_8_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_8_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_9_v1_model(): 		#define tertiary_1_alt_9 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_9_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_9_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+# def tertiary_1_alt_10_v1_model(): 		#define tertiary_1_alt_10 model # 7845(3064)		# big improve!
+	# model = Sequential()	# create model
+	# model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(17, kernel_initializer='normal', activation='relu'))
+	# model.add(Dense(1, kernel_initializer='normal'))
+	# model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	# return model
+
+# numpy.random.seed(seed)
+# estimators = []
+# estimators.append(('standardize', StandardScaler()))
+# estimators.append(('mlp', KerasRegressor(build_fn=tertiary_1_alt_10_v1_model, epochs=50, batch_size=5, verbose=0)))
+# pipeline = Pipeline(estimators)
+# kfold = KFold(n_splits=4, random_state=seed)
+# results = cross_val_score(pipeline, X, Y, cv=kfold)
+# print("tertiary_1_alt_10_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 
 ##########
 # tertiary_5_alt_1: 12559.9201 (6343.5722) MSE
@@ -1204,4 +1204,235 @@ print("tertiary_1_alt_10_v1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
 #
 # I think I'm happy with the reslts of C, and am going to spin up maybe 10 more models based on these 4,
 # will move on to another project after this treasure-hunting round 
+##########
+
+def treasure_hunt_1_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(38, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_1_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_1: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+def treasure_hunt_2_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_2_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_2: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+def treasure_hunt_3_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_3_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_3: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+def treasure_hunt_4_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_4_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_4: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+def treasure_hunt_5_a_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(33, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_5_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_5: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+def treasure_hunt_5_b_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(33, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(23, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_5_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_5: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+def treasure_hunt_5_c_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(33, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(23, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_5_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_5: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+def treasure_hunt_6_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(48, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(38, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_6_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_6: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+def treasure_hunt_7_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(48, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(38, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_7_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_7: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+def treasure_hunt_8_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(38, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_8_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_8: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+def treasure_hunt_9_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(22, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(18, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_9_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_9: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+def treasure_hunt_10_model(): 		#define model # ()  
+	model = Sequential()	# create model
+	model.add(Dense(38, input_dim=12, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(28, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(22, kernel_initializer='normal', activation='relu'))
+	model.add(Dense(1, kernel_initializer='normal'))
+	model.compile(loss='mean_squared_error', optimizer='adam') # Compile model
+	return model
+
+numpy.random.seed(seed)
+estimators = []
+estimators.append(('standardize', StandardScaler()))
+estimators.append(('mlp', KerasRegressor(build_fn=treasure_hunt_10_model, epochs=50, batch_size=5, verbose=0)))
+pipeline = Pipeline(estimators)
+kfold = KFold(n_splits=4, random_state=seed)
+results = cross_val_score(pipeline, X, Y, cv=kfold)
+print("treasure_hunt_10: %.4f (%.4f) MSE" % (results.mean(), results.std()))
+
+
+##########
+# post treasure-hunting notes
+# 
+# 
+# 
 ##########
