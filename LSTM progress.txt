@@ -1,0 +1,92 @@
+# LSTM guide
+# https://machinelearningmastery.com/long-short-term-memory-recurrent-neural-networks-mini-course/
+
+
+Lesson 1 : What are LSTMs?
+
+What is sequence prediction and what are some general examples?
+	- Sequence Prediction is a problem that involves using historical sequence information to predict the next value or values in the sequence.
+	- image captioning, sequence classification, sequence generation, sequence to sequence prediction
+What are the limitations of traditional neural networks for sequence prediction?
+	- the mapping function is static
+		- number of inputs and outputs are fixed
+		- have to specify the temporal dependence upfront in the design of the model
+What is the promise of RNNs for sequence prediction?
+	- the promise of RNNs for sequence prediction is that the temporal dependence in the input data can be learned,
+		that a fixed set of lagged observations does not need to be specifed
+What is the LSTM and what are its constituent parts?
+	- an LSTM is a RNN that uses constant error carrousels (CEC) to escape exploding/vanishing gradients
+	- LSTM layers consist of reccurently connected blocks, known as memory blocks. 
+		- each memory block contains one or more reccurently connected memory cells and three multiplicative units:
+		- input, output, forget gates
+		- the net can only interact with the cells via the gates
+What are some prominent applications of LSTMs?
+	- language modeling, speech translation, machine translation, 
+		problems in which we suspect that a hierarchical decomposition may exist, but do not know in advance what this decomposition is
+	
+Lesson 2: How LSTMs are trained
+
+Goal
+
+The goal of this lesson is to understand how LSTM models are trained on example sequences.
+
+Questions
+
+What common problems afflict the training of traditional RNNs?
+	- exploding/vanishing gradients
+How does the LSTM overcome these problems?
+	- constant error carrousels (CEC) and BPTT : Backpropagation Through Time
+What algorithm is used to train LSTMs?
+	- BPTT
+How does Backpropagation Through Time work?
+	- unrolls the network, calculates errors across each timestep, update weights
+What is truncated BPTT and what benefit does it offer?
+	- is like BPTT but changing chunks used for training, speeds up training time. may miss longer-term 
+How is BPTT implemented and configured in Keras?	
+	- k1=k2=h, h<n, 10s to 100s of timesteps
+	
+	
+Lesson 3: How to prepare data for LSTMs
+
+Goal
+
+The goal of this lesson is to understand how to prepare sequence prediction data for use with LSTM models.
+
+Questions
+
+How do you prepare numeric data for use with LSTMs?
+	- scaling or standardization using MinMaxScaler or StandardScaler, depending on underlying distribution assumptions
+How do you prepare categorical data for use with LSTMs?
+	- integer encoded, then "one hot encoded"
+	so, make a unique integer for each category for that variable, then make that variable column into
+		a number of binary columns, having encoded those integers to 1s and 0s to fit in those places
+How do you handle missing values in sequences when using LSTMs?
+	- remove their row
+	- or, fill them in with another value, such as one not naturally appearing in the series(perhaps -1? encouraging model to learn 'missing' flag)
+		- or, learn missing values!
+		- we can also use a Masking layer at the front of the LSTM to mask (-1 or whichever value) to automatically avoid marked missing rows
+How do you frame a sequence as a supervised learning problem?
+	- Convert from sequence of numbers ordered by a time sequence (ie a Time Series) to a pair of input patterns(X) and output patterns(y) (ie Supervised Learning)
+	- use pandas shift
+How do you handle long sequences when working with LSTMs?
+	- 
+How do you handle input sequences with different lengths?
+	- 
+How do you reshape input data for LSTMs in Keras?
+	- 
+
+Experiment
+
+Demonstrate how to transform a numerical input sequence into a form suitable for training an LSTM.
+
+
+
+
+
+
+
+
+
+
+
+

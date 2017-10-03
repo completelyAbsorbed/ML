@@ -154,11 +154,6 @@ def run_model(model_run, model_name, model_record_exists = model_record_exists):
 	
 # run_model(model_run = initial_5_model, model_name = 'initial_5')	
 
-####################################################################################
-# initial run notes
-# 
-####################################################################################
-
 # def stack_1_model(): 		#define model 
 	# model = Sequential()	# create model
 	# model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
@@ -219,11 +214,6 @@ def run_model(model_run, model_name, model_record_exists = model_record_exists):
 	
 # run_model(model_run = stack_5_model, model_name = 'stack_5')	
 
-####################################################################################
-# stack run notes
-# 
-####################################################################################
-
 # def new_shapes_1_model(): 		#define model 
 	# model = Sequential()	# create model
 	# model.add(Dense(49, input_dim=7, kernel_initializer='normal', activation='relu'))
@@ -275,11 +265,6 @@ def run_model(model_run, model_name, model_record_exists = model_record_exists):
 	
 # run_model(model_run = new_shapes_5_model, model_name = 'new_shapes_5')	
 
-####################################################################################
-# new_shapes run notes
-# 
-
-####################################################################################
 
 # def pyramids_1_model(): 		#define model 
 	# model = Sequential()	# create model
@@ -483,13 +468,6 @@ def run_model(model_run, model_name, model_record_exists = model_record_exists):
 	
 # run_model(model_run = derivative_10_model, model_name = 'derivative_10')	
 
-####################################################################################
-# pyramids, derivative run notes
-# 
-
-#
-####################################################################################
-
 # def secondary_1_model(): 		#define model 
 	# model = Sequential()	# create model
 	# model.add(Dense(7, input_dim=7, kernel_initializer='normal', activation='relu'))
@@ -582,7 +560,7 @@ def run_model(model_run, model_name, model_record_exists = model_record_exists):
 	
 # run_model(model_run = secondary_8_model, model_name = 'secondary_8')	
 
-take a note from new_shapes_1 and use a first hidden layer width of 49
+# take a note from new_shapes_1 and use a first hidden layer width of 49
 
 # def secondary_9_model(): 		#define model 
 	# model = Sequential()	# create model
@@ -675,14 +653,6 @@ take a note from new_shapes_1 and use a first hidden layer width of 49
 	# return model
 	
 # run_model(model_run = secondary_16_model, model_name = 'secondary_16')	
-
-####################################################################################
-# seconday run notes
-# 
-
-# 
-# somewhat disappointing results, hoping for a breakthrough to beat 0.00003946
-####################################################################################
 
 # def further_1_model(): 		#define model 
 	# model = Sequential()	# create model
@@ -931,16 +901,6 @@ take a note from new_shapes_1 and use a first hidden layer width of 49
 	
 # run_model(model_run = further_20_model, model_name = 'further_20')	
 
-####################################################################################
-# further run notes
-# 
-
-# 
-# results are still disappointing, probably because our target is too hard to predict (depends on much much more than our data)
-# 
-# try a last ditch effort, 'exploder' models : utilizing layers sized as powers of the number of inputs(did this a little already)
-####################################################################################
-
 # def exploder_1_model(): 		#define model 
 	# model = Sequential()	# create model
 	# model.add(Dense(343, input_dim=7, kernel_initializer='normal', activation='relu'))
@@ -1035,9 +995,82 @@ take a note from new_shapes_1 and use a first hidden layer width of 49
 
 
 ####################################################################################
-# exploder run notes
+# big run notes
 # 
-
+# stack_1: 0.00024477 (0.00008999) MSE
+# stack_2: 0.00028156 (0.00019726) MSE
+# stack_3: 0.00033351 (0.00017288) MSE
+# stack_4: 0.00039010 (0.00024451) MSE
+# stack_5: 0.00045534 (0.00024827) MSE
+# new_shapes_1: 0.00029080 (0.00014021) MSE
+# new_shapes_2: 0.00030169 (0.00013971) MSE
+# new_shapes_3: 0.00027357 (0.00011051) MSE
+# new_shapes_4: 0.00030982 (0.00015250) MSE
+# new_shapes_5: 0.00034121 (0.00022693) MSE
+# pyramids_1: 0.00045274 (0.00025131) MSE
+# pyramids_2: 0.00045534 (0.00024827) MSE
+# pyramids_3: 0.00045220 (0.00026008) MSE
+# pyramids_4: 0.00027707 (0.00007520) MSE
+# pyramids_5: 0.00023204 (0.00009153) MSE
+# pyramids_6: 0.00024914 (0.00012834) MSE
+# derivative_1: 0.00035202 (0.00023781) MSE
+# derivative_2: 0.00033806 (0.00026519) MSE
+# derivative_3: 0.00043957 (0.00026585) MSE
+# derivative_4: 0.00042674 (0.00027507) MSE
+# derivative_5: 0.00045534 (0.00024827) MSE
+# derivative_6: 0.00045534 (0.00024827) MSE
+# derivative_7: 0.00029680 (0.00019465) MSE
+# derivative_8: 0.00039153 (0.00021811) MSE
+# derivative_9: 0.00040337 (0.00020686) MSE
+# derivative_10: 0.00043858 (0.00026685) MSE
+# secondary_1: 0.00033467 (0.00018097) MSE
+# secondary_2: 0.00027415 (0.00020183) MSE
+# secondary_3: 0.00042640 (0.00027931) MSE
+# secondary_4: 0.00026538 (0.00019932) MSE
+# secondary_5: 0.00034897 (0.00017544) MSE
+# secondary_6: 0.00027678 (0.00020412) MSE
+# secondary_7: 0.00027707 (0.00007520) MSE
+# secondary_8: 0.00023032 (0.00009525) MSE
+# secondary_9: 0.00036573 (0.00023368) MSE
+# secondary_10: 0.00028732 (0.00019150) MSE
+# secondary_11: 0.00031605 (0.00018704) MSE
+# secondary_12: 0.00024183 (0.00008481) MSE
+# secondary_13: 0.00043732 (0.00027362) MSE
+# secondary_14: 0.00026504 (0.00012207) MSE
+# secondary_15: 0.00033906 (0.00024367) MSE
+# secondary_16: 0.00027868 (0.00010335) MSE
+# further_1: 0.00045101 (0.00026775) MSE
+# further_2: 0.00035236 (0.00024413) MSE
+# further_3: 0.00022833 (0.00008609) MSE
+# further_4: 0.00035214 (0.00018029) MSE
+# further_5: 0.00034866 (0.00024028) MSE
+# further_6: 0.00026554 (0.00010543) MSE
+# further_7: 0.00025276 (0.00010641) MSE
+# further_8: 0.00030047 (0.00019548) MSE
+# further_9: 0.00029267 (0.00008563) MSE
+# further_10: 0.00035878 (0.00016201) MSE
+# further_11: 0.00036257 (0.00023361) MSE
+# further_12: 0.00031036 (0.00019293) MSE
+# further_13: 0.00032462 (0.00019015) MSE
+# further_14: 0.00034444 (0.00023965) MSE
+# further_15: 0.00034866 (0.00024028) MSE
+# further_16: 0.00040028 (0.00020777) MSE
+# further_17: 0.00040404 (0.00020672) MSE
+# further_18: 0.00037545 (0.00022414) MSE
+# further_19: 0.00041072 (0.00022922) MSE
+# further_20: 0.00034621 (0.00017121) MSE
+# exploder_1: 0.00032463 (0.00019046) MSE
+# exploder_2: 0.00031488 (0.00013200) MSE
+# exploder_3: 0.00033681 (0.00013801) MSE
+# exploder_4: 0.00029327 (0.00013054) MSE
+# exploder_5: 0.00037635 (0.00031316) MSE
+# exploder_6: 0.00032622 (0.00015356) MSE
+# exploder_7: 0.00033360 (0.00014374) MSE
+# exploder_8: 0.00030544 (0.00008741) MSE
+# exploder_9: 0.00027647 (0.00011004) MSE
 # 
+#
+#
+#
 # 
 ####################################################################################
