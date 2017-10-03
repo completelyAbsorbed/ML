@@ -32,18 +32,13 @@ def generate_data(n_timesteps):
 	X = X.reshape(len(X), 2, 1)
 	y = y.reshape(len(y), 1)
 	return X, y
+ 
+# remove missing
 
+# mark missing, model learns their meaning
 
-	
-# flag-ify these versions of approach to missing data in the wrapper 
-	# remove missing
-	#
-	# mark missing, model learns their meaning
-	#
-	# mask missing, make model ignore them 
+# mask missing, make model ignore them 
 
-
-	
 # convert a time series to supervised learning format
 def series_to_supervised(data, n_in=1, n_out=1, dropnan=True):
 	"""
@@ -78,3 +73,10 @@ def series_to_supervised(data, n_in=1, n_out=1, dropnan=True):
 		agg.dropna(inplace=True)
 	return agg
  
+ 
+raw = DataFrame()
+raw['ob1'] = [x for x in range(10)]
+raw['ob2'] = [x for x in range(50, 60)]
+values = raw.values
+data = series_to_supervised(values, 1, 2)
+print(data)

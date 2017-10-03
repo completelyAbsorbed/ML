@@ -69,15 +69,63 @@ How do you frame a sequence as a supervised learning problem?
 	- Convert from sequence of numbers ordered by a time sequence (ie a Time Series) to a pair of input patterns(X) and output patterns(y) (ie Supervised Learning)
 	- use pandas shift
 How do you handle long sequences when working with LSTMs?
-	- 
+	- in practice ML engineers use a reasonable limit of 250-500 timesteps
+	- truncating sequences : cutting from beginning or end of input sequences
+	- summarizing : different ways to do this ex. removing most frequent words like 'the', or open/high/low/close for ticker data
+	- random sampling
+	- truncated backpropagation through time (TBPTT) : included some places, eg. "truncate_gradient" argument in Theano
+	- use an Encoder-Decoder architecture : 
 How do you handle input sequences with different lengths?
-	- 
+	- padding using pad_sequences() in Keras. 
+	- truncation using pad_sequences(sequences, maxlen=n)
 How do you reshape input data for LSTMs in Keras?
-	- 
+	- use NumPy function data.reshape() to make the data 3D
+		- Samples
+		- Time Steps
+		- Features
+	- can add input_shape(a,b) parameter to model.add(LSTM(x, input_shape(a,b)) 
+		- a specifies number of time steps
+		- b specifies number of features
+		- a and b are not the actual parameter names for input_shape
 
 Experiment
 
 Demonstrate how to transform a numerical input sequence into a form suitable for training an LSTM.
+
+
+Lesson 4: How to develop LSTMs in Keras
+
+Goal
+
+The goal of this lesson is to understand how to define, fit, and evaluate LSTM models using the Keras deep learning library in Python.
+
+Questions
+
+How do you define an LSTM Model?
+	- 
+How do you compile an LSTM Model?
+	- 
+How do you fit an LSTM Model?
+	- 
+How do you evaluate an LSTM Model?
+	- 
+How do you make predictions with an LSTM Model?
+	- 
+How can LSTMs be applied to different types of sequence prediction problems?
+	- 
+Experiment
+
+Prepare an example that demonstrates the life-cycle of an LSTM model on a sequence prediction problem.
+
+
+
+
+
+
+
+
+
+
 
 
 
