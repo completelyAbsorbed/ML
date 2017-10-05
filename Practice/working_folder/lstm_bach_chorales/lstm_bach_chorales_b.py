@@ -104,25 +104,29 @@ train_indices = indices[:50]
 test_indices = indices[50:]
 X_names = ['start_time', 'duration']
 Y_names = ['time_signature']
-X_df = chorales_df[X_names]
-Y_df = chorales_df[Y_names]
-X_train = X_df.ix[train_indices]
-Y_train = Y_df.ix[train_indices]
-X_test = X_df.ix[test_indices]
-Y_test = Y_df.ix[test_indices]
+
+X_train = []
+Y_train = []
+X_test = []
+Y_test = []		
 		
-makespace()
-print X_train
-makespace()
-print Y_train		
-makespace()
-print X_test
-makespace()
-print Y_test		
-		
-		
-		
-		
+for row in range(0,100):
+	sub_df = entries_chorales[row]
+	sub_X = sub_df[X_names]
+	sub_Y = sub_df[Y_names]
+	if (row in train_indices):
+		X_train.append(sub_X)
+		Y_train.append(sub_Y)
+	else:
+		X_test.append(sub_X)
+		Y_test.append(sub_Y)
+
+
+
+
+
+
+	
 		
 		
 		
