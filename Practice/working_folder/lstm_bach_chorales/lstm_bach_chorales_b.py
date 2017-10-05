@@ -2,6 +2,7 @@
 from lisp_interface import read_lisp
 from pandas import DataFrame
 from pandas import Series
+from random import shuffle
 
 def makespace(lines=5):
 	for line in range(0,lines):
@@ -92,10 +93,38 @@ for row in range(0, 100):
 		
 chorales_df['target'] = Series(target, index = chorales_df.index)
 chorales_df['id'] = Series(range(0, 100), index = chorales_df.index)
-
 # convert all values to integer		
 for row in range(0,100):
 	for col in range(0,5):
 		chorales_df.iloc[row,col] = int(chorales_df.iloc[row,col])
-
-
+# some test splitting steps
+indices = range(0,100)
+shuffle(indices)
+train_indices = indices[:50]
+test_indices = indices[50:]
+X_names = ['start_time', 'duration']
+Y_names = ['time_signature']
+X_df = chorales_df[X_names]
+Y_df = chorales_df[Y_names]
+X_train = X_df.ix[train_indices]
+Y_train = Y_df.ix[train_indices]
+X_test = X_df.ix[test_indices]
+Y_test = Y_df.ix[test_indices]
+		
+makespace()
+print X_train
+makespace()
+print Y_train		
+makespace()
+print X_test
+makespace()
+print Y_test		
+		
+		
+		
+		
+		
+		
+		
+		
+		
