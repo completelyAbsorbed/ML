@@ -1,6 +1,7 @@
 # lstm_bach_chorales_a.py
 from lisp_interface import read_lisp
 from pandas import DataFrame
+from pandas import Series
 
 def makespace(lines=5):
 	for line in range(0,lines):
@@ -68,14 +69,8 @@ makespace()
 ###################################
 
 # make list of df
-# chorales_df = DataFrame(sub_chorales, columns = col_names)
-# print chorales_df
-# makespace()
-# make binary target column to add as a column to chorales_df
-# target = []
-# for row in range(0, len(chorales_df)):
-	# sub_list = chorales_df[row]
-	# for sub_row in range(0, len(sub_list)):
+chorales_df = DataFrame(sub_chorales, columns = col_names)
+makespace()
 
 entries_chorales = []	
 	
@@ -87,4 +82,20 @@ for row in range(0, len(chorales_data)):
 	sub_df = DataFrame(df_list, columns = col_names)
 	entries_chorales.append(sub_df)
 	
+# contruct binary target column
+target = []
+for row in range(0, 100):
+	if(int(chorales_df.iloc[row, 2]) == 16):
+		target.append(1)
+	else:
+		target.append(0)
 		
+chorales_df['target'] = Series(target, index = chorales_df.index)
+chorales_df['id'] = Series(range(0, 100), index = chorales_df.index)
+
+# convert all values to integer		
+for row in range(0,100):
+	for col in range(0,5):
+		chorales_df.iloc[row,col] = int(chorales_df.iloc[row,col])
+
+
