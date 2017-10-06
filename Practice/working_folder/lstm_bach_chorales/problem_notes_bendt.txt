@@ -2,13 +2,12 @@
 
 To Do
 
-[] x. figure out how to read .lisp into python, or do intermediary translation to .csv, or other appropriate
-[] a. do lstm classification with key signature as target
-[] b. do lstm classification with time signature as target
-[] c. do predictive/generative lstm for next note(s) on various length sequences
-		- record settings and error for various configurations
-[] d. as (b) but backwards prediction/generation
-		
+[X] x. figure out how to read .lisp into python, or do intermediary translation to .csv, or other appropriate
+[]   a. do lstm classification with key signature as target
+[]   b. do lstm classification with time signature as target
+[]   c. do predictive/generative lstm for next note(s) on various length sequences
+[]   d. as (b) but backwards prediction/generation
+******** record settings and error for various configurations		
 a ~ use midi notes only
 b ~ mide notes and timing variable? more?
 c ~ try multivariate approach

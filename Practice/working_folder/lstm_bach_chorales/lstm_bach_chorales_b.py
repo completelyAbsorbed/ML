@@ -3,6 +3,14 @@ from lisp_interface import read_lisp
 from pandas import DataFrame
 from pandas import Series
 from random import shuffle
+from random import randint
+from numpy import array
+from numpy import argmax
+from keras.models import Sequential
+from keras.layers import LSTM
+from keras.layers import Dense
+from keras.preprocessing.sequence import pad_sequences
+
 
 def makespace(lines=5):
 	for line in range(0,lines):
@@ -50,6 +58,7 @@ for row in range(0, len(chorales_data)):
 # sub_chorales = [chorales_data[:][0][1:][0][i][1] for i in [0, 2, 4]] # just field names, could do a check with this
 flat_list = [item for sublist in sub_feature_names for item in sublist]
 my_set = set(flat_list)
+makespace()
 print 'feature names extracted : ...'
 print my_set
 makespace()
@@ -121,14 +130,106 @@ for row in range(0,100):
 		X_test.append(sub_X)
 		Y_test.append(sub_Y)
 
+# maximum sequence length is 86 consider padding a bit above or below this amount (100???, 25???)
+
+###################################
+# define and execute a vanilla LSTM
+# 
+###################################
+
+# one hot encode sequence
+def one_hot_encode(sequence, n_features):
+	encoding = list()
+	for value in sequence:
+		vector = [0 for _ in range(n_features)]
+		vector[value] = 1
+		encoding.append(vector)
+	return array(encoding)
+
+# decode a one hot encoded string
+def one_hot_decode(encoded_seq):
+	return [argmax(vector) for vector in encoded_seq]
+
+# define model
+length = 25           #also try 100
+num_cols = 2
+n_features = 2
+out_index = 2
+model = Sequential()
+model.add(LSTM(25, input_shape=(length*num_cols, n_features)))
+model.add(Dense(n_features, activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
+print(model.summary())
+
+# fit model
+for i in range(50):
+	# X, y = generate_example(length, n_features, out_index)
+	df_X = X_train[i]
+	# print train_indices[i]
+	# print target[train_indices[i]]
+	# y = one_hot_encode(target[train_indices[i]], n_features)
+	if (target[train_indices[i]] == 1):
+		y = [1, 0]
+	else:
+		y = [0, 1]
+	y = array(y).reshape(1, n_features)
+	st = list(df_X['start_time'])
+	st = pad_sequences([st], maxlen = length, truncating = 'post')
+	dur = list(df_X['duration'])
+	dur = pad_sequences([dur], maxlen = length, truncating = 'post')	
+	X = [st, dur]
+	X = array(X).reshape(1, length, n_features)
+	model.fit(X, y, epochs=1, verbose=2)
+
+# evaluate model
+correct = 0
+for i in range(50):
+	X, y = generate_example(length, n_features, out_index)
+	yhat = model.predict(X)
+	if one_hot_decode(yhat) == one_hot_decode(y):
+		correct += 1
+print('Accuracy: %f' % ((correct/100)*100.0))
+
+# prediction on new data
+# X, y = generate_example(length, n_features, out_index)
+# yhat = model.predict(X)
+# print('Sequence:  %s' % [one_hot_decode(x) for x in X])
+# print('Expected:  %s' % one_hot_decode(y))
+# print('Predicted: %s' % one_hot_decode(yhat))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 	
-		
-		
-		
-		
-		
