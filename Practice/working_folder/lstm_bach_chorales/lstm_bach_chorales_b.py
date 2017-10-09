@@ -92,13 +92,17 @@ for row in range(0, len(chorales_data)):
 	sub_df = DataFrame(df_list, columns = col_names)
 	entries_chorales.append(sub_df)
 	
+three_count = 0
+four_count = 0
 # contruct binary target column
 target = []
 for row in range(0, 100):
 	if(int(chorales_df.iloc[row, 2]) == 16):
 		target.append(1)
+		four_count +=1
 	else:
 		target.append(0)
+		three_count += 1
 		
 chorales_df['target'] = Series(target, index = chorales_df.index)
 chorales_df['id'] = Series(range(0, 100), index = chorales_df.index)
@@ -156,18 +160,17 @@ num_cols = 2
 n_features = 2
 out_index = 2
 model = Sequential()
-model.add(LSTM(25, input_shape=(length*num_cols, n_features)))
+# 
+test_length = 50
+#model.add(LSTM(25, input_shape=(length*num_cols, n_features)))
+model.add(LSTM(35, input_shape=(length, n_features)))
 model.add(Dense(n_features, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 print(model.summary())
 
 # fit model
 for i in range(50):
-	# X, y = generate_example(length, n_features, out_index)
 	df_X = X_train[i]
-	# print train_indices[i]
-	# print target[train_indices[i]]
-	# y = one_hot_encode(target[train_indices[i]], n_features)
 	if (target[train_indices[i]] == 1):
 		y = [1, 0]
 	else:
@@ -179,16 +182,34 @@ for i in range(50):
 	dur = pad_sequences([dur], maxlen = length, truncating = 'post')	
 	X = [st, dur]
 	X = array(X).reshape(1, length, n_features)
-	model.fit(X, y, epochs=1, verbose=2)
+	model.fit(X, y, epochs=100, verbose=2)
 
 # evaluate model
-correct = 0
-for i in range(50):
-	X, y = generate_example(length, n_features, out_index)
+three_count_test = 0
+four_count_test = 0
+
+correct = 0.
+for i in range(test_length):
+	df_X = X_test[i]
+	if (target[test_indices[i]] == 1):
+		y = [1, 0]
+		four_count_test += 1
+	else:
+		y = [0, 1]
+		three_count_test += 1
+		
+	y = array(y).reshape(1, n_features)
+	st = list(df_X['start_time'])
+	st = pad_sequences([st], maxlen = length, truncating = 'post')
+	dur = list(df_X['duration'])
+	dur = pad_sequences([dur], maxlen = length, truncating = 'post')	
+	X = [st, dur]
+	X = array(X).reshape(1, length, n_features)
 	yhat = model.predict(X)
 	if one_hot_decode(yhat) == one_hot_decode(y):
-		correct += 1
-print('Accuracy: %f' % ((correct/100)*100.0))
+		correct = correct + 1
+		
+print('Accuracy: %f' % ((correct/test_length)*100.0))
 
 # prediction on new data
 # X, y = generate_example(length, n_features, out_index)
@@ -198,7 +219,16 @@ print('Accuracy: %f' % ((correct/100)*100.0))
 # print('Predicted: %s' % one_hot_decode(yhat))
 
 
+makespace()
 
+print 'three count'
+print three_count
+print 'four count'
+print four_count
+print 'three count_test'
+print three_count_test
+print 'four count_test'
+print four_count_test
 
 
 
