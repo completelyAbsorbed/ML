@@ -163,7 +163,8 @@ model = Sequential()
 # 
 test_length = 50
 #model.add(LSTM(25, input_shape=(length*num_cols, n_features)))
-model.add(LSTM(35, input_shape=(length, n_features)))
+model.add(LSTM(4, input_shape=(length, n_features)))
+model.add(Dense(n_features, activation='softmax'))
 model.add(Dense(n_features, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 print(model.summary())
@@ -182,7 +183,7 @@ for i in range(50):
 	dur = pad_sequences([dur], maxlen = length, truncating = 'post')	
 	X = [st, dur]
 	X = array(X).reshape(1, length, n_features)
-	model.fit(X, y, epochs=100, verbose=2)
+	model.fit(X, y, epochs=2, verbose=2)
 
 # evaluate model
 three_count_test = 0
@@ -206,6 +207,7 @@ for i in range(test_length):
 	X = [st, dur]
 	X = array(X).reshape(1, length, n_features)
 	yhat = model.predict(X)
+	print yhat
 	if one_hot_decode(yhat) == one_hot_decode(y):
 		correct = correct + 1
 		
